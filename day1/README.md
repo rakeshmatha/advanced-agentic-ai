@@ -1,23 +1,20 @@
 # Day 1: Foundation and Engineering Decisions
 
-Day 1 establishes the Python and RAG foundation, then records the first
+Status: **Complete**
+
+Day 1 established the Python and RAG foundation, then recorded the first
 architecture choices for the customer-service assistant.
 
 ## Folders
 
-- `01_architecture_patterns/`: agent, workflow, and traditional software
-- `02_rag_vs_finetuning_vs_prompting/`: technology selection framework
-- `03_api_vs_mcp/`: integration selection framework
-- `04_lab/`: two-use-case analysis exercise
-- `05_deliverable/`: initial decision-matrix submission
-- `foundation/`, `rag/`, and `engineering_decisions/`: runnable examples and supporting artifacts
-
-The reusable implementation is in `application/`. Everything needed for Day 1
-is kept under this folder; later days will own their own examples and code.
+- `topics/`: all three Day 1 learning topics in one place
+- `lab/`: all runnable code, policy documents, experiments, and deliverables
 
 ## Run the examples
 
 ```powershell
-python -m day1.foundation.basic_chat
-python -m day1.rag.ask "Can I return an unopened item?"
+python -m day1.lab.ask "Can I return an unopened item?"
 ```
+
+The completed decision matrix is in `lab/deliverable/`. Day 2 builds on this lab
+without duplicating its RAG implementation.

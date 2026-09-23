@@ -1,7 +1,17 @@
 # Day 2: Agent Architecture
 
-Planned work: single-agent versus multi-agent design, sequential and router
-patterns, tool boundaries, escalation, and failure handling.
+Status: **In progress**
 
-Deliverable: working sequential and router examples with an architecture
-comparison note.
+Day 2 extends the Day 1 customer-service RAG into explicit agent architecture.
+
+## Folders
+
+- `topics/`: agent principles and orchestration patterns
+- `lab/`: the sequential baseline, router implementation, and deliverable
+
+## Run the Router Lab
+
+```powershell
+python -m day2.lab.router "Can I return an unopened item?"
+python -m day2.lab.router "I need to change my delivery address."
+```

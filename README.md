@@ -3,14 +3,15 @@
 Python-only learning project using LangChain for RAG components and LangGraph
 for workflow orchestration.
 
-The learning work is organized by day under `day1/` through `day5/`. Day 1
-contains the current runnable customer-service RAG application.
+The learning work is organized by day under `day1/` through `day5/`. Day 1 is
+complete; Day 2 is the current implementation phase.
 
 ## Layout
 
 ```text
-day1/application/       Day 1 configuration, RAG, and LangGraph workflow
-day1/                   Day 1 examples and decision artifacts
+day1/topics/            Combined Day 1 learning topics
+day1/lab/               Day 1 runnable implementation and documents
+day1/lab/deliverable/   Day 1 final decision matrix and output
 day2/                   Day 2 agent architecture workspace
 day3/                   Day 3 advanced orchestration workspace
 day4/                   Day 4 evaluation and observability workspace
@@ -21,19 +22,19 @@ day5/                   Day 5 production readiness workspace
 
 ```powershell
 .\venv\Scripts\Activate.ps1
-python -m day1.rag.ask "Can I return an unopened item?"
+python -m day1.lab.ask "Can I return an unopened item?"
 ```
 
-Add `.md` or `.txt` files to `day1/rag/documents/` as the policy knowledge base grows.
-See [day1/engineering_decisions/decision-matrix.md](day1/engineering_decisions/decision-matrix.md)
-for the current design notes.
+Add `.md` or `.txt` files to `day1/lab/documents/` as the policy knowledge base grows.
+See [day1/lab/deliverable/decision-matrix.md](day1/lab/deliverable/decision-matrix.md)
+for the completed Day 1 design decision.
 
 ## Learning Plan
 
 This project follows a foundation-to-production path for a customer-service AI
 assistant. Each phase adds a capability and a reviewable engineering artifact.
 
-### Day 1: Foundation and Engineering Decisions
+### Day 1: Foundation and Engineering Decisions - Complete
 
 - Refresh Python environments, model calls, prompts, context windows, and RAG.
 - Build the first policy-grounded customer-service question-answering flow.
@@ -42,19 +43,20 @@ assistant. Each phase adds a capability and a reviewable engineering artifact.
 - Compare REST APIs and MCP for external capabilities.
 - Analyze two business use cases and create the initial decision matrix.
 
-Artifacts: [day1/](day1/), [decision matrix](day1/engineering_decisions/decision-matrix.md),
-and the sequential workflow in `day1/application/workflow.py`.
+Artifacts: [day1/](day1/), [decision matrix](day1/lab/deliverable/decision-matrix.md),
+and the sequential workflow in `day1/lab/application/workflow.py`.
 
-### Day 2: Agent Architecture
+### Day 2: Agent Architecture - In Progress
 
 - Compare workflows, single-agent systems, and multi-agent systems.
 - Add sequential and router patterns for customer-service questions.
 - Define tool boundaries, escalation behavior, and failure handling.
 - Explain why added orchestration complexity is justified.
 
-Deliverable: working agent patterns plus an architecture comparison note.
+Artifacts: [day2/topics/](day2/topics/), [day2/lab/](day2/lab/), and
+[day2/lab/deliverable/](day2/lab/deliverable/).
 
-### Day 3: Advanced Orchestration
+### Day 3: Advanced Orchestration - Planned
 
 - Explore planner-executor and supervisor patterns.
 - Compare built-in functions, custom tools, REST APIs, and MCP integration.
@@ -62,7 +64,7 @@ Deliverable: working agent patterns plus an architecture comparison note.
 
 Deliverable: compare multiple orchestration strategies using the same tools.
 
-### Day 4: Evaluation and Observability
+### Day 4: Evaluation and Observability - Planned
 
 - Create a golden question set for retrieval and answer quality.
 - Measure evidence hit rate, answer quality, task success, latency, and cost.
@@ -71,7 +73,7 @@ Deliverable: compare multiple orchestration strategies using the same tools.
 
 Deliverable: evaluation harness and observability design.
 
-### Day 5: Production Readiness and Architecture Review
+### Day 5: Production Readiness and Architecture Review - Planned
 
 - Add input validation, prompt-injection defenses, PII handling, retries,
   timeouts, fallbacks, and access controls.

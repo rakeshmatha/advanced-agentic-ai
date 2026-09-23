@@ -10,8 +10,8 @@ from langchain_text_splitters import RecursiveCharacterTextSplitter
 from .config import Settings
 
 
-DEFAULT_DOCUMENTS_DIR = Path(__file__).resolve().parent.parent / "rag" / "documents"
-DEFAULT_VECTOR_STORE_DIR = Path(__file__).resolve().parent.parent / "rag" / ".chroma"
+DEFAULT_DOCUMENTS_DIR = Path(__file__).resolve().parent.parent / "documents"
+DEFAULT_VECTOR_STORE_DIR = Path(__file__).resolve().parent.parent / ".chroma"
 
 
 def load_documents(documents_dir: str | Path = DEFAULT_DOCUMENTS_DIR) -> list[Document]:
@@ -35,10 +35,9 @@ def build_vector_store(
     documents_dir: str | Path = DEFAULT_DOCUMENTS_DIR,
     vector_store_dir: str | Path = DEFAULT_VECTOR_STORE_DIR,
 ) -> Chroma:
-    source_documents = load_documents(documents_dir)
     chunks = RecursiveCharacterTextSplitter(
         chunk_size=800, chunk_overlap=120
-    ).split_documents(source_documents)
+    ).split_documents(load_documents(documents_dir))
     vector_store = Chroma(
         persist_directory=str(vector_store_dir),
         collection_name="customer_service_documents",

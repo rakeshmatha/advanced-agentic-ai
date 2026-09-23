@@ -1,7 +1,7 @@
 import sys
 
-from day1.application import settings
-from day1.application.workflow import answer_question
+from day1.lab.application import settings
+from day1.lab.application.workflow import answer_question
 
 
 def main() -> None:
