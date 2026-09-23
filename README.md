@@ -61,15 +61,29 @@ flowchart LR
 
     DAY1 ~~~ DAY2 ~~~ DAY3 ~~~ DAY4 ~~~ DAY5
 
-    classDef complete fill:#d8f3dc,stroke:#2d6a4f,color:#1b4332
-    classDef current fill:#fff3bf,stroke:#e09f3e,color:#7f4f24
-    classDef planned fill:#dbeafe,stroke:#3b82f6,color:#1e3a8a
-    classDef deliverable fill:#f3e8ff,stroke:#7e22ce,color:#581c87
+    classDef complete fill:#d8f3dc,stroke:#2d6a4f,color:#1b4332,stroke-width:2px,font-size:12px
+    classDef current fill:#fff3bf,stroke:#e09f3e,color:#7f4f24,stroke-width:2px,font-size:12px
+    classDef planned fill:#dbeafe,stroke:#3b82f6,color:#1e3a8a,stroke-width:2px,font-size:12px
+    classDef deliverable fill:#f3e8ff,stroke:#7e22ce,color:#581c87,stroke-width:2px,font-size:12px
     class D1T,D1B complete
     class D1O,D2O,D3O,D4O,D5O deliverable
     class D2T,D2B current
     class D3T,D3B,D4T,D4B,D5T,D5B planned
+    style DAY1 fill:#f0fdf4,stroke:#2d6a4f,stroke-width:2px
+    style DAY2 fill:#fffbeb,stroke:#e09f3e,stroke-width:2px
+    style DAY3 fill:#eff6ff,stroke:#3b82f6,stroke-width:2px
+    style DAY4 fill:#eff6ff,stroke:#3b82f6,stroke-width:2px
+    style DAY5 fill:#eff6ff,stroke:#3b82f6,stroke-width:2px
 ```
+
+### Diagram Legend
+
+| Visual | Meaning |
+| --- | --- |
+| Green | Completed learning and implementation |
+| Yellow | Current learning and implementation |
+| Blue | Planned learning and implementation |
+| Purple | Day deliverable or review artifact |
 
 ### Day 1: Foundation and Engineering Decisions - Complete
 
