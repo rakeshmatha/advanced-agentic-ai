@@ -9,4 +9,4 @@ customer-service RAG workflow using Python, LangChain, and LangGraph.
 python -m day1.lab.ask "Can I return an unopened item?"
 ```
 
-Add policy files to `documents/`. The local Chroma store is created in `.chroma/`.
+Add policy files to `docs/`. The local Chroma store is created in `.chroma/`.

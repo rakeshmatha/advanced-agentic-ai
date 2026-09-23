@@ -10,7 +10,7 @@ from langchain_text_splitters import RecursiveCharacterTextSplitter
 from .config import Settings
 
 
-DEFAULT_DOCUMENTS_DIR = Path(__file__).resolve().parent.parent / "documents"
+DEFAULT_DOCUMENTS_DIR = Path(__file__).resolve().parent.parent / "docs"
 DEFAULT_VECTOR_STORE_DIR = Path(__file__).resolve().parent.parent / ".chroma"
 
 

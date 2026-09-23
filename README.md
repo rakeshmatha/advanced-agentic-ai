@@ -25,7 +25,7 @@ day5/                   Day 5 production readiness workspace
 python -m day1.lab.ask "Can I return an unopened item?"
 ```
 
-Add `.md` or `.txt` files to `day1/lab/documents/` as the policy knowledge base grows.
+Add `.md` or `.txt` files to `day1/lab/docs/` as the policy knowledge base grows.
 See [day1/lab/deliverable/decision-matrix.md](day1/lab/deliverable/decision-matrix.md)
 for the completed Day 1 design decision.
 
@@ -41,7 +41,7 @@ assistant. Each phase adds a capability and a reviewable engineering artifact.
 flowchart LR
     subgraph DAY1["DAY 1 | COMPLETE"]
         direction TB
-        D1T["LEARN\nArchitecture patterns\nRAG vs fine-tuning\nREST API vs MCP"] --> D1B["BUILD\nLangChain + Chroma\nLangGraph RAG flow\nSource-grounded answers\nPATH: day1/lab/application/"] --> D1O["OUTPUT\nDecision matrix\nPolicy corpus\nPATH: day1/lab/deliverable/"]
+        D1T["LEARN\nArchitecture patterns\nRAG vs fine-tuning\nREST API vs MCP"] --> D1B["BUILD\nLangChain + Chroma\nLangGraph RAG flow\nSource-grounded answers\nPATH: day1/lab/app/"] --> D1O["OUTPUT\nDecision matrix\nPolicy corpus\nPATH: day1/lab/deliverable/"]
     end
     subgraph DAY2["DAY 2 | CURRENT"]
         direction TB
@@ -96,7 +96,7 @@ flowchart LR
 - Analyze two business use cases and create the initial decision matrix.
 
 Artifacts: [day1/](day1/), [decision matrix](day1/lab/deliverable/decision-matrix.md),
-and the sequential workflow in `day1/lab/application/workflow.py`.
+and the sequential workflow in `day1/lab/app/workflow.py`.
 
 ### Day 2: Agent Architecture - In Progress
 
