@@ -1,4 +1,37 @@
-# Day 2 Topics: Agent Architecture
+# Day 2 Topics: Engineering Decisions and Agent Architecture
+
+## Session Outcome
+
+Complete a technology selection and design a basic customer-service agent
+system that can be explained during an architecture review.
+
+## Engineering Decisions
+
+### LangChain vs LangGraph vs Python-only
+
+| Choice | Strength | Cost or risk | Day 2 position |
+| --- | --- | --- | --- |
+| Python-only | Maximum control and fewest dependencies | More orchestration and reliability code to own | Use for glue and tests |
+| LangChain | Reusable model, prompt, retriever, and tool integrations | Fast-moving APIs and dependency upgrades | Use for RAG components |
+| LangGraph | Explicit state, nodes, branching, and handoffs | More structure than a simple function | Use for agent workflows |
+
+Evaluate each choice using complexity, maintainability, platform support, total
+cost of ownership, latency, observability, and team skills.
+
+### Build vs Buy
+
+- In-house orchestration gives control over policy behavior, data boundaries,
+	integrations, and evaluation, but the team owns reliability and operations.
+- Off-the-shelf agent or harness systems can accelerate a demo and provide
+	hosted operations, but may add lock-in, recurring cost, and less control.
+
+For this learning project, build in-house because orchestration and trade-off
+reasoning are the learning objectives.
+
+### Trade-Off Note
+
+A review-ready note records the decision, alternatives, assumptions, evidence,
+risks, consequences, and triggers that would cause the decision to change.
 
 ## Single Agent vs Multi-Agent
 
