@@ -38,30 +38,35 @@ assistant. Each phase adds a capability and a reviewable engineering artifact.
 
 ```mermaid
 flowchart TB
-    D1["DAY 1 | COMPLETE\nFoundation and decisions"] --> D1T
-    D1T["LEARNED\nArchitecture patterns | RAG vs fine-tuning vs prompting | REST API vs MCP"] --> D1L
-    D1L["BUILT LOCALLY\nLangChain RAG + Chroma retrieval\nLangGraph retrieve -> answer\nPolicy answers with sources\nday1/lab/application/"] --> D1O
-    D1O["DELIVERABLE\nDecision matrix + policy corpus\nday1/lab/deliverable/"] --> D2
+    subgraph DAY1["DAY 1 | COMPLETE: Foundation and decisions"]
+        direction LR
+        D1["LEARNED\nArchitecture patterns\nRAG vs fine-tuning vs prompting\nREST API vs MCP"] --> D1L["BUILT LOCALLY\nLangChain RAG + Chroma\nLangGraph retrieve -> answer\nSource-grounded policy answers\nday1/lab/application/"] --> D1O["DELIVERABLE\nDecision matrix\nPolicy corpus\nday1/lab/deliverable/"]
+    end
 
-    D2["DAY 2 | CURRENT\nAgent architecture"] --> D2T
-    D2T["LEARNING\nSingle vs multi-agent | Sequential vs router\nTool boundaries | Escalation | Handoffs"] --> D2L
-    D2L["BUILDING LOCALLY\nLangGraph classify_request node\nPolicy route -> Day 1 RAG\nEscalation route -> human support\nday2/lab/router.py"] --> D2O
-    D2O["DELIVERABLE\nSequential vs router comparison\nRoute and failure analysis\nday2/lab/deliverable/"] --> D3
+    subgraph DAY2["DAY 2 | CURRENT: Agent architecture"]
+        direction LR
+        D2["LEARNING NOW\nSingle vs multi-agent\nSequential vs router\nTools, escalation, handoffs"] --> D2L["BUILDING LOCALLY\nclassify_request node\nPolicy -> Day 1 RAG\nAction -> human escalation\nday2/lab/router.py"] --> D2O["DELIVERABLE\nSequential vs router\nRoute and failure analysis\nday2/lab/deliverable/"]
+    end
 
-    D3["DAY 3 | PLANNED\nAdvanced orchestration"] --> D3T
-    D3T["LEARN\nPlanner-executor | Supervisor\nTools and MCP | Handoffs | Failure modes"] --> D3L
-    D3L["BUILD LOCALLY\nPlanner and supervisor workflows\nShared tools | Timeout and retry tests"] --> D3O
-    D3O["DELIVERABLE\nPattern comparison: quality, cost, latency"] --> D4
+    subgraph DAY3["DAY 3 | PLANNED: Advanced orchestration"]
+        direction LR
+        D3["TO LEARN\nPlanner-executor\nSupervisor workflow\nTools, MCP, handoffs"] --> D3L["TO BUILD\nShared customer-service tools\nPlanner and supervisor flows\nTimeout and retry tests"] --> D3O["DELIVERABLE\nPattern comparison\nQuality, cost, latency, failures"]
+    end
 
-    D4["DAY 4 | PLANNED\nEvaluation and observability"] --> D4T
-    D4T["LEARN\nGolden datasets | Retrieval and answer metrics\nLLM-as-judge | Logs | Traces | Release gates"] --> D4L
-    D4L["BUILD LOCALLY\nGolden question harness\nEvidence, route, timing, and cost checks\nWorkflow traces and scorecard"] --> D4O
-    D4O["DELIVERABLE\nEvaluation scorecard + observability design"] --> D5
+    subgraph DAY4["DAY 4 | PLANNED: Evaluation and observability"]
+        direction LR
+        D4["TO LEARN\nGolden datasets\nRetrieval and answer metrics\nLLM-as-judge, logs, traces"] --> D4L["TO BUILD\nGolden-test harness\nEvidence, route, timing, cost\nWorkflow traces and scorecard"] --> D4O["DELIVERABLE\nEvaluation scorecard\nPass/fail gates\nObservability design"]
+    end
 
-    D5["DAY 5 | PLANNED\nProduction readiness"] --> D5T
-    D5T["LEARN\nGuardrails | Prompt-injection defense | PII\nResilience | Cost economics | Deployment"] --> D5L
-    D5L["BUILD LOCALLY\nInput/output controls | Retry and fallback tests\nCost model | Risk register | Rollback plan"] --> D5O
-    D5O["DELIVERABLE\nProduction checklist + Architecture Review Board package"]
+    subgraph DAY5["DAY 5 | PLANNED: Production readiness"]
+        direction LR
+        D5["TO LEARN\nGuardrails and PII\nPrompt-injection defense\nResilience, economics, deployment"] --> D5L["TO BUILD\nInput/output controls\nRetry and fallback tests\nCost, risk, rollback plan"] --> D5O["DELIVERABLE\nProduction checklist\nCost and risk package\nArchitecture Review Board"]
+    end
+
+    D1O --> D2
+    D2O --> D3
+    D3O --> D4
+    D4O --> D5
 
     classDef complete fill:#d8f3dc,stroke:#2d6a4f,color:#1b4332
     classDef current fill:#fff3bf,stroke:#e09f3e,color:#7f4f24
