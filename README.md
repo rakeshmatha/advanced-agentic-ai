@@ -38,56 +38,39 @@ assistant. Each phase adds a capability and a reviewable engineering artifact.
 
 ```mermaid
 flowchart TB
-    D1["Day 1 | COMPLETE"] --> D2["Day 2 | CURRENT"]
-    D2 --> D3["Day 3 | PLANNED"]
-    D3 --> D4["Day 4 | PLANNED"]
-    D4 --> D5["Day 5 | PLANNED"]
+    D1["DAY 1 | COMPLETE\nFoundation and decisions"] --> D1T
+    D1T["LEARNED\nArchitecture patterns | RAG vs fine-tuning vs prompting | REST API vs MCP"] --> D1L
+    D1L["BUILT LOCALLY\nLangChain RAG + Chroma retrieval\nLangGraph retrieve -> answer\nPolicy answers with sources\nday1/lab/application/"] --> D1O
+    D1O["DELIVERABLE\nDecision matrix + policy corpus\nday1/lab/deliverable/"] --> D2
 
-    subgraph S1["Day 1: Foundation and Engineering Decisions"]
-        D1T["LEARNED\n- Agent vs workflow vs traditional software\n- RAG vs fine-tuning vs prompting\n- REST API vs MCP\n- Cost, latency, quality, maintainability"]
-        D1L["DEVELOPED LOCALLY\n- day1/lab/application/rag.py\n- LangChain chunking and OpenAI embeddings\n- Chroma persistent retrieval\n- LangGraph retrieve -> answer flow\n- Policy-grounded answers with sources"]
-        D1O["DAY 1 DELIVERABLE\n- day1/lab/deliverable/decision-matrix.md\n- Customer-service policy corpus\n- Two-use-case technology analysis"]
-        D1T --> D1L --> D1O
-    end
+    D2["DAY 2 | CURRENT\nAgent architecture"] --> D2T
+    D2T["LEARNING\nSingle vs multi-agent | Sequential vs router\nTool boundaries | Escalation | Handoffs"] --> D2L
+    D2L["BUILDING LOCALLY\nLangGraph classify_request node\nPolicy route -> Day 1 RAG\nEscalation route -> human support\nday2/lab/router.py"] --> D2O
+    D2O["DELIVERABLE\nSequential vs router comparison\nRoute and failure analysis\nday2/lab/deliverable/"] --> D3
 
-    subgraph S2["Day 2: Agent Architecture"]
-        D2T["LEARNING NOW\n- Single-agent vs multi-agent\n- Sequential and router patterns\n- Tool boundaries and escalation\n- Handoffs and failure behavior"]
-        D2L["DEVELOPING LOCALLY\n- day2/lab/router.py\n- classify_request node\n- Policy route to Day 1 RAG\n- Human escalation route\n- Typed LangGraph state and updates"]
-        D2O["DAY 2 DELIVERABLE\n- day2/lab/deliverable/architecture-comparison.md\n- Sequential vs router comparison\n- Route and failure analysis"]
-        D2T --> D2L --> D2O
-    end
+    D3["DAY 3 | PLANNED\nAdvanced orchestration"] --> D3T
+    D3T["LEARN\nPlanner-executor | Supervisor\nTools and MCP | Handoffs | Failure modes"] --> D3L
+    D3L["BUILD LOCALLY\nPlanner and supervisor workflows\nShared tools | Timeout and retry tests"] --> D3O
+    D3O["DELIVERABLE\nPattern comparison: quality, cost, latency"] --> D4
 
-    subgraph S3["Day 3: Advanced Orchestration"]
-        D3T["TO LEARN\n- Planner-executor\n- Supervisor or hierarchical flow\n- Tools, REST, MCP\n- Handoffs, timeouts, retries, context loss"]
-        D3L["TO DEVELOP LOCALLY\n- Shared customer-service tools\n- Planner workflow\n- Supervisor workflow\n- Same inputs across patterns\n- Failure and latency comparison"]
-        D3O["DAY 3 DELIVERABLE\n- Architecture comparison report\n- Quality, cost, latency, failure modes"]
-        D3T --> D3L --> D3O
-    end
+    D4["DAY 4 | PLANNED\nEvaluation and observability"] --> D4T
+    D4T["LEARN\nGolden datasets | Retrieval and answer metrics\nLLM-as-judge | Logs | Traces | Release gates"] --> D4L
+    D4L["BUILD LOCALLY\nGolden question harness\nEvidence, route, timing, and cost checks\nWorkflow traces and scorecard"] --> D4O
+    D4O["DELIVERABLE\nEvaluation scorecard + observability design"] --> D5
 
-    subgraph S4["Day 4: Evaluation and Observability"]
-        D4T["TO LEARN\n- Golden datasets and regression\n- Retrieval, answer, and task metrics\n- LLM-as-judge\n- Logs, traces, drift, release gates"]
-        D4L["TO DEVELOP LOCALLY\n- Golden question harness\n- Evidence and route checks\n- Timing and token measurements\n- Retrieval and graph traces\n- Scorecard prototype"]
-        D4O["DAY 4 DELIVERABLE\n- Evaluation scorecard\n- Pass/fail thresholds\n- Observability dashboard design"]
-        D4T --> D4L --> D4O
-    end
-
-    subgraph S5["Day 5: Production Readiness and Architecture Review"]
-        D5T["TO LEARN\n- Guardrails and prompt-injection defense\n- PII and access control\n- Resilience and fallbacks\n- Token economics and model routing\n- Deployment and incident response"]
-        D5L["TO DEVELOP LOCALLY\n- Input and output controls\n- Retry, timeout, fallback tests\n- Cost model and context controls\n- Risk register and rollback plan\n- Review-board checklist"]
-        D5O["DAY 5 DELIVERABLE\n- Production-readiness checklist\n- Cost and risk package\n- Architecture Review Board presentation"]
-        D5T --> D5L --> D5O
-    end
+    D5["DAY 5 | PLANNED\nProduction readiness"] --> D5T
+    D5T["LEARN\nGuardrails | Prompt-injection defense | PII\nResilience | Cost economics | Deployment"] --> D5L
+    D5L["BUILD LOCALLY\nInput/output controls | Retry and fallback tests\nCost model | Risk register | Rollback plan"] --> D5O
+    D5O["DELIVERABLE\nProduction checklist + Architecture Review Board package"]
 
     classDef complete fill:#d8f3dc,stroke:#2d6a4f,color:#1b4332
     classDef current fill:#fff3bf,stroke:#e09f3e,color:#7f4f24
     classDef planned fill:#dbeafe,stroke:#3b82f6,color:#1e3a8a
     classDef deliverable fill:#f3e8ff,stroke:#7e22ce,color:#581c87
     class D1,D1T,D1L complete
-    class D1O deliverable
+    class D1O,D2O,D3O,D4O,D5O deliverable
     class D2,D2T,D2L current
-    class D2O deliverable
     class D3,D3T,D3L,D4,D4T,D4L,D5,D5T,D5L planned
-    class D3O,D4O,D5O deliverable
 ```
 
 ### Day 1: Foundation and Engineering Decisions - Complete
