@@ -34,6 +34,35 @@ for the completed Day 1 design decision.
 This project follows a foundation-to-production path for a customer-service AI
 assistant. Each phase adds a capability and a reviewable engineering artifact.
 
+## Learning Graph
+
+```mermaid
+flowchart LR
+    D1["Day 1: Foundation\nCOMPLETE"] --> D2["Day 2: Agent Architecture\nCURRENT"]
+    D2 --> D3["Day 3: Advanced Orchestration\nPLANNED"]
+    D3 --> D4["Day 4: Evaluation and Observability\nPLANNED"]
+    D4 --> D5["Day 5: Production Readiness\nPLANNED"]
+
+    D1 --> D1T["Learned\nArchitecture patterns\nRAG vs fine-tuning vs prompting\nREST API vs MCP"]
+    D1 --> D1L["Hands-on\nLangChain RAG\nChroma retrieval\nLangGraph sequential flow\nSource-grounded answers"]
+    D1 --> D1O["Output\nDecision matrix\nCustomer-service policy corpus"]
+
+    D2 --> D2T["Learning now\nSingle vs multi-agent\nSequential and router patterns\nTool boundaries and escalation"]
+    D2 --> D2L["Hands-on now\nRouter graph\nPolicy route\nHuman escalation route"]
+    D2 --> D2O["Output now\nArchitecture comparison\nRoute and failure analysis"]
+
+    D3 --> D3L["Hands-on next\nPlanner-executor\nSupervisor workflow\nShared tools and handoffs"]
+    D4 --> D4L["Hands-on next\nGolden test set\nMetrics and traces\nEvaluation scorecard"]
+    D5 --> D5L["Hands-on next\nGuardrails and resilience\nCost model\nArchitecture review package"]
+
+    classDef complete fill:#d8f3dc,stroke:#2d6a4f,color:#1b4332
+    classDef current fill:#fff3bf,stroke:#e09f3e,color:#7f4f24
+    classDef planned fill:#dbeafe,stroke:#3b82f6,color:#1e3a8a
+    class D1,D1T,D1L,D1O complete
+    class D2,D2T,D2L,D2O current
+    class D3,D3L,D4,D4L,D5,D5L planned
+```
+
 ### Day 1: Foundation and Engineering Decisions - Complete
 
 - Refresh Python environments, model calls, prompts, context windows, and RAG.
