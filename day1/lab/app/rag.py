@@ -18,6 +18,8 @@ def load_documents(documents_dir: str | Path = DEFAULT_DOCUMENTS_DIR) -> list[Do
     directory = Path(documents_dir)
     documents: list[Document] = []
     for path in sorted(directory.rglob("*")):
+        if path.name.lower() == "readme.md":
+            continue
         if path.suffix.lower() in {".md", ".txt"}:
             documents.append(
                 Document(

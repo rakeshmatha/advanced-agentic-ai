@@ -64,3 +64,15 @@ action-oriented requests to human support.
 - What happens when a route is uncertain?
 - Which tools can each specialist call?
 - How are timeouts, retries, and handoffs observed?
+
+## Tool Integration Practice
+
+Day 2 now applies the router pattern to real tool boundaries:
+
+- OpenWeatherMap for weather questions
+- Tavily for web research questions
+- Day 1 RAG for approved policy questions
+- Human escalation for account or order actions
+
+This demonstrates why a router can be more useful than one general-purpose
+agent: each route has a narrower capability and clearer ownership.
