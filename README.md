@@ -37,25 +37,60 @@ assistant. Each phase adds a capability and a reviewable engineering artifact.
 ## Learning Graph
 
 ```mermaid
-flowchart TB
-    D1["DAY 1 | COMPLETE\nFOUNDATION AND DECISIONS\n\nLEARN\nArchitecture patterns | RAG vs fine-tuning | REST API vs MCP\n\nBUILD\nLangChain RAG + Chroma | LangGraph retrieve -> answer\nSource-grounded policy answers | day1/lab/application/\n\nDELIVER\nDecision matrix + policy corpus | day1/lab/deliverable/"]
-    D2["DAY 2 | CURRENT\nAGENT ARCHITECTURE\n\nLEARN\nSingle vs multi-agent | Sequential vs router | Escalation\n\nBUILD\nclassify_request | Policy -> Day 1 RAG | Action -> human\nday2/lab/router.py\n\nDELIVER\nSequential vs router comparison | day2/lab/deliverable/"]
-    D3["DAY 3 | PLANNED\nADVANCED ORCHESTRATION\n\nLEARN\nPlanner-executor | Supervisor | Tools and MCP | Handoffs\n\nBUILD\nPlanner and supervisor workflows | Shared tools | Retries\n\nDELIVER\nPattern comparison: quality, cost, latency, failures"]
-    D4["DAY 4 | PLANNED\nEVALUATION AND OBSERVABILITY\n\nLEARN\nGolden datasets | Retrieval and answer metrics | Traces\n\nBUILD\nGolden-test harness | Evidence and route checks | Scorecard\n\nDELIVER\nEvaluation scorecard | Pass/fail gates | Observability design"]
-    D5["DAY 5 | PLANNED\nPRODUCTION READINESS\n\nLEARN\nGuardrails | PII | Resilience | Cost | Deployment\n\nBUILD\nInput/output controls | Fallback tests | Risk and rollback plan\n\nDELIVER\nProduction checklist | Cost/risk package | ARB presentation"]
+flowchart LR
+    subgraph DAY1["DAY 1 | COMPLETE"]
+        direction TB
+        D1T["LEARN\nArchitecture patterns\nRAG vs fine-tuning vs prompting\nREST API vs MCP\nCost, latency, quality, maintainability"]
+        D1B["BUILD\nLangChain document loading\nChunking + OpenAI embeddings\nChroma persistent retrieval\nLangGraph retrieve -> answer\nPolicy answers with sources\nday1/lab/application/"]
+        D1O["OUTPUT\nDecision matrix\nCustomer-service policy corpus\nTwo-use-case analysis\nday1/lab/deliverable/"]
+        D1T --> D1B --> D1O
+    end
 
-    D1 --> D2 --> D3
-    D3 --> D4 --> D5
-    D1 ~~~ D4
-    D2 ~~~ D5
+    subgraph DAY2["DAY 2 | CURRENT"]
+        direction TB
+        D2T["LEARN\nSingle vs multi-agent\nSequential vs router\nTool boundaries and escalation\nHandoffs and failure behavior"]
+        D2B["BUILD\nclassify_request node\nPolicy route -> Day 1 RAG\nAction route -> human support\nTyped LangGraph state\nday2/lab/router.py"]
+        D2O["OUTPUT\nSequential vs router comparison\nRoute and failure analysis\nArchitecture decision note\nday2/lab/deliverable/"]
+        D2T --> D2B --> D2O
+    end
+
+    subgraph DAY3["DAY 3 | PLANNED"]
+        direction TB
+        D3T["LEARN\nPlanner-executor\nSupervisor / hierarchical agents\nTools, REST, MCP\nTimeouts, retries, context loss"]
+        D3B["BUILD\nPlanner workflow\nSupervisor workflow\nShared customer-service tools\nHandoff and failure tests"]
+        D3O["OUTPUT\nArchitecture comparison report\nQuality, cost, latency\nFailure-mode analysis"]
+        D3T --> D3B --> D3O
+    end
+
+    subgraph DAY4["DAY 4 | PLANNED"]
+        direction TB
+        D4T["LEARN\nGolden datasets\nRetrieval, answer, task metrics\nLLM-as-judge\nLogs, traces, drift, release gates"]
+        D4B["BUILD\nGolden question harness\nEvidence and route checks\nLatency and token measurements\nWorkflow traces and scorecard"]
+        D4O["OUTPUT\nEvaluation scorecard\nPass/fail thresholds\nObservability dashboard design"]
+        D4T --> D4B --> D4O
+    end
+
+    subgraph DAY5["DAY 5 | PLANNED"]
+        direction TB
+        D5T["LEARN\nGuardrails and PII handling\nPrompt-injection defense\nResilience and fallbacks\nToken economics and deployment"]
+        D5B["BUILD\nInput/output controls\nRetry, timeout, fallback tests\nCost model and context controls\nRisk, rollback, incident plan"]
+        D5O["OUTPUT\nProduction-readiness checklist\nCost and risk package\nArchitecture Review Board presentation"]
+        D5T --> D5B --> D5O
+    end
+
+    D1O --> D2T
+    D2O --> D3T
+    D3O --> D4T
+    D4O --> D5T
 
     classDef complete fill:#d8f3dc,stroke:#2d6a4f,color:#1b4332
     classDef current fill:#fff3bf,stroke:#e09f3e,color:#7f4f24
     classDef planned fill:#dbeafe,stroke:#3b82f6,color:#1e3a8a
     classDef deliverable fill:#f3e8ff,stroke:#7e22ce,color:#581c87
-    class D1 complete
-    class D2 current
-    class D3,D4,D5 planned
+    class D1T,D1B complete
+    class D1O,D2O,D3O,D4O,D5O deliverable
+    class D2T,D2B current
+    class D3T,D3B,D4T,D4B,D5T,D5B planned
 ```
 
 ### Day 1: Foundation and Engineering Decisions - Complete
