@@ -23,3 +23,9 @@ python -m day2.lab.router "I need to change my delivery address."
 - Build-vs-buy analysis for agent harnesses and in-house orchestration.
 - Working sequential and router agent patterns.
 - Final decision matrix and architecture comparison in `lab/deliverable/`.
+
+
+Decision:
+Python      -> application glue and tests
+LangChain   -> RAG components
+LangGraph   -> agent orchestration
