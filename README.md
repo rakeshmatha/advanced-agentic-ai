@@ -70,11 +70,11 @@ flowchart LR
     class D1O,D2O,D3O,D4O,D5O deliverable
     class D2T,D2B current
     class D3T,D3B,D4T,D4B,D5T,D5B planned
-    style DAY1 fill:#f0fdf4,stroke:#2d6a4f,stroke-width:2px
-    style DAY2 fill:#fffbeb,stroke:#e09f3e,stroke-width:2px
-    style DAY3 fill:#eff6ff,stroke:#3b82f6,stroke-width:2px
-    style DAY4 fill:#eff6ff,stroke:#3b82f6,stroke-width:2px
-    style DAY5 fill:#eff6ff,stroke:#3b82f6,stroke-width:2px
+    style DAY1 fill:#000000,stroke:#2d6a4f,stroke-width:3px,color:#ffffff
+    style DAY2 fill:#000000,stroke:#e09f3e,stroke-width:3px,color:#ffffff
+    style DAY3 fill:#000000,stroke:#3b82f6,stroke-width:3px,color:#ffffff
+    style DAY4 fill:#000000,stroke:#3b82f6,stroke-width:3px,color:#ffffff
+    style DAY5 fill:#000000,stroke:#3b82f6,stroke-width:3px,color:#ffffff
 ```
 
 ### Diagram Legend
