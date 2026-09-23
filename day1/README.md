@@ -5,9 +5,12 @@ architecture choices for the customer-service assistant.
 
 ## Folders
 
-- `foundation/`: environment configuration and a basic LLM call
-- `rag/`: the first customer-service RAG exercise
-- `engineering_decisions/`: decision matrix and trade-off notes
+- `01_architecture_patterns/`: agent, workflow, and traditional software
+- `02_rag_vs_finetuning_vs_prompting/`: technology selection framework
+- `03_api_vs_mcp/`: integration selection framework
+- `04_lab/`: two-use-case analysis exercise
+- `05_deliverable/`: initial decision-matrix submission
+- `foundation/`, `rag/`, and `engineering_decisions/`: runnable examples and supporting artifacts
 
 The reusable implementation remains in `mini_agent/`. Day folders contain
 learning-facing entry points and artifacts, not duplicated framework code.

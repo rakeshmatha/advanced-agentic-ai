@@ -3,9 +3,9 @@
 Python-only learning project using LangChain for RAG components and LangGraph
 for workflow orchestration.
 
-The learning work is organized by day under `day1/`. The reusable application
-implementation stays in `mini_agent/` so later day examples can build on the
-same customer-service system.
+The learning work is organized by day under `day1/` through `day5/`. The
+reusable application implementation stays in `mini_agent/` so each day can
+build on the same customer-service system.
 
 ## Layout
 
@@ -17,6 +17,10 @@ mini_agent/workflow.py  LangGraph retrieval and answer nodes
 docs/                   Architecture decisions and learning notes
 main.py                 Command-line entry point
 day1/                   Day 1 examples and decision artifacts
+day2/                   Day 2 agent architecture workspace
+day3/                   Day 3 advanced orchestration workspace
+day4/                   Day 4 evaluation and observability workspace
+day5/                   Day 5 production readiness workspace
 ```
 
 ## Run
@@ -39,8 +43,10 @@ assistant. Each phase adds a capability and a reviewable engineering artifact.
 
 - Refresh Python environments, model calls, prompts, context windows, and RAG.
 - Build the first policy-grounded customer-service question-answering flow.
-- Compare prompting, fine-tuning, RAG, Python-only code, LangChain, and LangGraph.
-- Record assumptions, risks, costs, and review triggers in a decision matrix.
+- Compare traditional software, workflows, and agents.
+- Compare RAG, fine-tuning, and prompting using cost, latency, quality, and maintainability.
+- Compare REST APIs and MCP for external capabilities.
+- Analyze two business use cases and create the initial decision matrix.
 
 Artifacts: [day1/](day1/), [decision matrix](day1/engineering_decisions/decision-matrix.md),
 and the sequential workflow in `mini_agent/workflow.py`.
