@@ -4,8 +4,7 @@ from pathlib import Path
 
 from langchain_chroma import Chroma
 from langchain_core.documents import Document
-from langchain_core.prompts import ChatPromptTemplate
-from langchain_openai import ChatOpenAI, OpenAIEmbeddings
+from langchain_openai import OpenAIEmbeddings
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 
 from .config import Settings
@@ -49,33 +48,15 @@ def build_vector_store(
         collection_name="project_documents",
         embedding_function=embeddings,
     )
-    if vector_store._collection.count() == 0:
-        vector_store.add_documents(chunks)
+    stored_metadata = vector_store.get(include=["metadatas"]).get("metadatas", [])
+    stored_sources = {
+        str(metadata.get("source"))
+        for metadata in stored_metadata
+        if metadata and metadata.get("source")
+    }
+    new_chunks = [
+        chunk for chunk in chunks if str(chunk.metadata.get("source")) not in stored_sources
+    ]
+    if new_chunks:
+        vector_store.add_documents(new_chunks)
     return vector_store
-
-
-def answer_question(
-    question: str,
-    settings: Settings,
-    documents_dir: str | Path = DEFAULT_DOCUMENTS_DIR,
-    vector_store_dir: str | Path = DEFAULT_VECTOR_STORE_DIR,
-) -> tuple[str, list[str]]:
-    vector_store = build_vector_store(settings, documents_dir, vector_store_dir)
-    retrieved_documents = vector_store.as_retriever(search_kwargs={"k": 4}).invoke(question)
-    context = "\n\n".join(document.page_content for document in retrieved_documents)
-    prompt = ChatPromptTemplate.from_messages(
-        [
-            (
-                "system",
-                "Answer using only the supplied context. If the answer is not in the context, say you do not know.\n\nContext:\n{context}",
-            ),
-            ("human", "{question}"),
-        ]
-    )
-    response = (prompt | ChatOpenAI(
-        api_key=settings.openai_api_key.get_secret_value(),
-        model=settings.model,
-        temperature=0,
-    )).invoke({"context": context, "question": question})
-    sources = sorted({str(document.metadata["source"]) for document in retrieved_documents})
-    return response.content, sources

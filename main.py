@@ -1,7 +1,7 @@
 import sys
 
 from mini_agent import settings
-from mini_agent.rag import answer_question
+from mini_agent.workflow import answer_question
 
 
 def main() -> None:
