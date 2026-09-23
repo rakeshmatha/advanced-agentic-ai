@@ -37,24 +37,41 @@ assistant. Each phase adds a capability and a reviewable engineering artifact.
 ## Learning Graph
 
 ```mermaid
-flowchart TB
-    D1["DAY 1 | COMPLETE\nFOUNDATION + DECISIONS\n\nLEARN\nArchitecture patterns\nRAG vs fine-tuning vs prompting\nREST API vs MCP\n\nBUILD\nLangChain + Chroma\nLangGraph RAG flow\nSource-grounded policy answers\n\nOUTPUT\nDecision matrix + policy corpus"]
-    D2["DAY 2 | CURRENT\nAGENT ARCHITECTURE\n\nLEARN\nSingle vs multi-agent\nSequential vs router\nTools, escalation, handoffs\n\nBUILD\nRouter and classify_request\nPolicy -> Day 1 RAG\nAction -> human support\n\nOUTPUT\nSequential vs router comparison"]
-    D3["DAY 3 | PLANNED\nADVANCED ORCHESTRATION\n\nLEARN\nPlanner-executor + supervisor\nTools, MCP, handoffs\nRetries and context loss\n\nBUILD\nPlanner and supervisor flows\nShared tools + failure tests\n\nOUTPUT\nPattern comparison report"]
-    D4["DAY 4 | PLANNED\nEVALUATION + OBSERVABILITY\n\nLEARN\nGolden datasets + metrics\nLLM-as-judge + tracing\nRelease gates and drift\n\nBUILD\nGolden-test harness\nEvidence, route, cost, latency checks\n\nOUTPUT\nScorecard + observability design"]
-    D5["DAY 5 | PLANNED\nPRODUCTION READINESS\n\nLEARN\nGuardrails, PII, resilience\nPrompt injection + economics\nDeployment and incident response\n\nBUILD\nControls, retries, fallbacks\nCost model + risk register\n\nOUTPUT\nProduction checklist + ARB package"]
+flowchart LR
+    subgraph DAY1["DAY 1 | COMPLETE"]
+        direction TB
+        D1T["LEARN\nArchitecture patterns\nRAG vs fine-tuning\nREST API vs MCP"] --> D1B["BUILD\nLangChain + Chroma\nLangGraph RAG flow\nSource-grounded answers"] --> D1O["OUTPUT\nDecision matrix\nPolicy corpus"]
+    end
+    subgraph DAY2["DAY 2 | CURRENT"]
+        direction TB
+        D2T["LEARN\nSingle vs multi-agent\nSequential vs router\nEscalation and handoffs"] --> D2B["BUILD\nRouter graph\nPolicy -> RAG\nAction -> human"] --> D2O["OUTPUT\nPattern comparison\nRoute analysis"]
+    end
+    subgraph DAY3["DAY 3 | PLANNED"]
+        direction TB
+        D3T["LEARN\nPlanner-executor\nSupervisor\nTools and MCP"] --> D3B["BUILD\nPlanner flow\nSupervisor flow\nFailure tests"] --> D3O["OUTPUT\nArchitecture report\nCost and latency"]
+    end
+    subgraph DAY4["DAY 4 | PLANNED"]
+        direction TB
+        D4T["LEARN\nGolden datasets\nQuality metrics\nTracing and gates"] --> D4B["BUILD\nEvaluation harness\nEvidence checks\nScorecard"] --> D4O["OUTPUT\nEvaluation scorecard\nObservability design"]
+    end
+    subgraph DAY5["DAY 5 | PLANNED"]
+        direction TB
+        D5T["LEARN\nGuardrails and PII\nResilience and cost\nDeployment"] --> D5B["BUILD\nControls and fallbacks\nCost model\nRisk register"] --> D5O["OUTPUT\nProduction checklist\nARB package"]
+    end
 
-    D1 ~~~ D2 ~~~ D3
-    D3 --> D4
-    D4 ~~~ D5
+    D1O --> D2T
+    D2O --> D3T
+    D3O --> D4T
+    D4O --> D5T
 
     classDef complete fill:#d8f3dc,stroke:#2d6a4f,color:#1b4332
     classDef current fill:#fff3bf,stroke:#e09f3e,color:#7f4f24
     classDef planned fill:#dbeafe,stroke:#3b82f6,color:#1e3a8a
     classDef deliverable fill:#f3e8ff,stroke:#7e22ce,color:#581c87
-    class D1 complete
-    class D2 current
-    class D3,D4,D5 planned
+    class D1T,D1B complete
+    class D1O,D2O,D3O,D4O,D5O deliverable
+    class D2T,D2B current
+    class D3T,D3B,D4T,D4B,D5T,D5B planned
 ```
 
 ### Day 1: Foundation and Engineering Decisions - Complete
