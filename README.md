@@ -40,31 +40,31 @@ assistant. Each phase adds a capability and a reviewable engineering artifact.
 flowchart LR
     subgraph DAY1["DAY 1 | COMPLETE"]
         direction TB
-        D1T["LEARN\nArchitecture patterns\nRAG vs fine-tuning\nREST API vs MCP"] --> D1B["BUILD\nLangChain + Chroma\nLangGraph RAG flow\nSource-grounded answers"] --> D1O["OUTPUT\nDecision matrix\nPolicy corpus"]
+        D1T["LEARN\nArchitecture patterns\nRAG vs fine-tuning\nREST API vs MCP"] --> D1B["BUILD\nLangChain + Chroma\nLangGraph RAG flow\nSource-grounded answers\nPATH: day1/lab/application/"] --> D1O["OUTPUT\nDecision matrix\nPolicy corpus\nPATH: day1/lab/deliverable/"]
     end
     subgraph DAY2["DAY 2 | CURRENT"]
         direction TB
-        D2T["LEARN\nSingle vs multi-agent\nSequential vs router\nEscalation and handoffs"] --> D2B["BUILD\nRouter graph\nPolicy -> RAG\nAction -> human"] --> D2O["OUTPUT\nPattern comparison\nRoute analysis"]
+        D2T["LEARN\nSingle vs multi-agent\nSequential vs router\nEscalation and handoffs"] --> D2B["BUILD\nRouter graph\nPolicy -> RAG\nAction -> human\nPATH: day2/lab/router.py"] --> D2O["OUTPUT\nPattern comparison\nRoute analysis\nPATH: day2/lab/deliverable/"]
     end
     subgraph DAY3["DAY 3 | PLANNED"]
         direction TB
-        D3T["LEARN\nPlanner-executor\nSupervisor\nTools and MCP"] --> D3B["BUILD\nPlanner flow\nSupervisor flow\nFailure tests"] --> D3O["OUTPUT\nArchitecture report\nCost and latency"]
+        D3T["LEARN\nPlanner-executor\nSupervisor\nTools and MCP"] --> D3B["BUILD\nPlanner flow\nSupervisor flow\nFailure tests\nPATH: day3/lab/"] --> D3O["OUTPUT\nArchitecture report\nCost and latency\nPATH: day3/lab/deliverable/"]
     end
     subgraph DAY4["DAY 4 | PLANNED"]
         direction TB
-        D4T["LEARN\nGolden datasets\nQuality metrics\nTracing and gates"] --> D4B["BUILD\nEvaluation harness\nEvidence checks\nScorecard"] --> D4O["OUTPUT\nEvaluation scorecard\nObservability design"]
+        D4T["LEARN\nGolden datasets\nQuality metrics\nTracing and gates"] --> D4B["BUILD\nEvaluation harness\nEvidence checks\nScorecard\nPATH: day4/lab/"] --> D4O["OUTPUT\nEvaluation scorecard\nObservability design\nPATH: day4/lab/deliverable/"]
     end
     subgraph DAY5["DAY 5 | PLANNED"]
         direction TB
-        D5T["LEARN\nGuardrails and PII\nResilience and cost\nDeployment"] --> D5B["BUILD\nControls and fallbacks\nCost model\nRisk register"] --> D5O["OUTPUT\nProduction checklist\nARB package"]
+        D5T["LEARN\nGuardrails and PII\nResilience and cost\nDeployment"] --> D5B["BUILD\nControls and fallbacks\nCost model\nRisk register\nPATH: day5/lab/"] --> D5O["OUTPUT\nProduction checklist\nARB package\nPATH: day5/lab/deliverable/"]
     end
 
     DAY1 ~~~ DAY2 ~~~ DAY3 ~~~ DAY4 ~~~ DAY5
 
-    classDef complete fill:#d8f3dc,stroke:#2d6a4f,color:#1b4332,stroke-width:2px,font-size:12px
-    classDef current fill:#fff3bf,stroke:#e09f3e,color:#7f4f24,stroke-width:2px,font-size:12px
-    classDef planned fill:#dbeafe,stroke:#3b82f6,color:#1e3a8a,stroke-width:2px,font-size:12px
-    classDef deliverable fill:#f3e8ff,stroke:#7e22ce,color:#581c87,stroke-width:2px,font-size:12px
+    classDef complete fill:#d8f3dc,stroke:#2d6a4f,color:#1b4332,stroke-width:2px,font-size:15px
+    classDef current fill:#fff3bf,stroke:#e09f3e,color:#7f4f24,stroke-width:2px,font-size:15px
+    classDef planned fill:#dbeafe,stroke:#3b82f6,color:#1e3a8a,stroke-width:2px,font-size:15px
+    classDef deliverable fill:#f3e8ff,stroke:#7e22ce,color:#581c87,stroke-width:2px,font-size:15px
     class D1T,D1B complete
     class D1O,D2O,D3O,D4O,D5O deliverable
     class D2T,D2B current
