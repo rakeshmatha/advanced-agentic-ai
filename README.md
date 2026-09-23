@@ -37,29 +37,29 @@ assistant. Each phase adds a capability and a reviewable engineering artifact.
 ## Learning Graph
 
 ```mermaid
-flowchart TB
-    subgraph DAY1["DAY 1 | COMPLETE: Foundation and decisions"]
-        direction LR
+flowchart LR
+    subgraph DAY1["DAY 1 | COMPLETE\nFoundation and decisions"]
+        direction TB
         D1["LEARNED\nArchitecture patterns\nRAG vs fine-tuning vs prompting\nREST API vs MCP"] --> D1L["BUILT LOCALLY\nLangChain RAG + Chroma\nLangGraph retrieve -> answer\nSource-grounded policy answers\nday1/lab/application/"] --> D1O["DELIVERABLE\nDecision matrix\nPolicy corpus\nday1/lab/deliverable/"]
     end
 
-    subgraph DAY2["DAY 2 | CURRENT: Agent architecture"]
-        direction LR
+    subgraph DAY2["DAY 2 | CURRENT\nAgent architecture"]
+        direction TB
         D2["LEARNING NOW\nSingle vs multi-agent\nSequential vs router\nTools, escalation, handoffs"] --> D2L["BUILDING LOCALLY\nclassify_request node\nPolicy -> Day 1 RAG\nAction -> human escalation\nday2/lab/router.py"] --> D2O["DELIVERABLE\nSequential vs router\nRoute and failure analysis\nday2/lab/deliverable/"]
     end
 
-    subgraph DAY3["DAY 3 | PLANNED: Advanced orchestration"]
-        direction LR
+    subgraph DAY3["DAY 3 | PLANNED\nAdvanced orchestration"]
+        direction TB
         D3["TO LEARN\nPlanner-executor\nSupervisor workflow\nTools, MCP, handoffs"] --> D3L["TO BUILD\nShared customer-service tools\nPlanner and supervisor flows\nTimeout and retry tests"] --> D3O["DELIVERABLE\nPattern comparison\nQuality, cost, latency, failures"]
     end
 
-    subgraph DAY4["DAY 4 | PLANNED: Evaluation and observability"]
-        direction LR
+    subgraph DAY4["DAY 4 | PLANNED\nEvaluation and observability"]
+        direction TB
         D4["TO LEARN\nGolden datasets\nRetrieval and answer metrics\nLLM-as-judge, logs, traces"] --> D4L["TO BUILD\nGolden-test harness\nEvidence, route, timing, cost\nWorkflow traces and scorecard"] --> D4O["DELIVERABLE\nEvaluation scorecard\nPass/fail gates\nObservability design"]
     end
 
-    subgraph DAY5["DAY 5 | PLANNED: Production readiness"]
-        direction LR
+    subgraph DAY5["DAY 5 | PLANNED\nProduction readiness"]
+        direction TB
         D5["TO LEARN\nGuardrails and PII\nPrompt-injection defense\nResilience, economics, deployment"] --> D5L["TO BUILD\nInput/output controls\nRetry and fallback tests\nCost, risk, rollback plan"] --> D5O["DELIVERABLE\nProduction checklist\nCost and risk package\nArchitecture Review Board"]
     end
 
