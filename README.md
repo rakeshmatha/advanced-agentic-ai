@@ -37,45 +37,25 @@ assistant. Each phase adds a capability and a reviewable engineering artifact.
 ## Learning Graph
 
 ```mermaid
-flowchart LR
-    subgraph DAY1["DAY 1 | COMPLETE\nFoundation and decisions"]
-        direction TB
-        D1["LEARNED\nArchitecture patterns\nRAG vs fine-tuning vs prompting\nREST API vs MCP"] --> D1L["BUILT LOCALLY\nLangChain RAG + Chroma\nLangGraph retrieve -> answer\nSource-grounded policy answers\nday1/lab/application/"] --> D1O["DELIVERABLE\nDecision matrix\nPolicy corpus\nday1/lab/deliverable/"]
-    end
+flowchart TB
+    D1["DAY 1 | COMPLETE\nFOUNDATION AND DECISIONS\n\nLEARN\nArchitecture patterns | RAG vs fine-tuning | REST API vs MCP\n\nBUILD\nLangChain RAG + Chroma | LangGraph retrieve -> answer\nSource-grounded policy answers | day1/lab/application/\n\nDELIVER\nDecision matrix + policy corpus | day1/lab/deliverable/"]
+    D2["DAY 2 | CURRENT\nAGENT ARCHITECTURE\n\nLEARN\nSingle vs multi-agent | Sequential vs router | Escalation\n\nBUILD\nclassify_request | Policy -> Day 1 RAG | Action -> human\nday2/lab/router.py\n\nDELIVER\nSequential vs router comparison | day2/lab/deliverable/"]
+    D3["DAY 3 | PLANNED\nADVANCED ORCHESTRATION\n\nLEARN\nPlanner-executor | Supervisor | Tools and MCP | Handoffs\n\nBUILD\nPlanner and supervisor workflows | Shared tools | Retries\n\nDELIVER\nPattern comparison: quality, cost, latency, failures"]
+    D4["DAY 4 | PLANNED\nEVALUATION AND OBSERVABILITY\n\nLEARN\nGolden datasets | Retrieval and answer metrics | Traces\n\nBUILD\nGolden-test harness | Evidence and route checks | Scorecard\n\nDELIVER\nEvaluation scorecard | Pass/fail gates | Observability design"]
+    D5["DAY 5 | PLANNED\nPRODUCTION READINESS\n\nLEARN\nGuardrails | PII | Resilience | Cost | Deployment\n\nBUILD\nInput/output controls | Fallback tests | Risk and rollback plan\n\nDELIVER\nProduction checklist | Cost/risk package | ARB presentation"]
 
-    subgraph DAY2["DAY 2 | CURRENT\nAgent architecture"]
-        direction TB
-        D2["LEARNING NOW\nSingle vs multi-agent\nSequential vs router\nTools, escalation, handoffs"] --> D2L["BUILDING LOCALLY\nclassify_request node\nPolicy -> Day 1 RAG\nAction -> human escalation\nday2/lab/router.py"] --> D2O["DELIVERABLE\nSequential vs router\nRoute and failure analysis\nday2/lab/deliverable/"]
-    end
-
-    subgraph DAY3["DAY 3 | PLANNED\nAdvanced orchestration"]
-        direction TB
-        D3["TO LEARN\nPlanner-executor\nSupervisor workflow\nTools, MCP, handoffs"] --> D3L["TO BUILD\nShared customer-service tools\nPlanner and supervisor flows\nTimeout and retry tests"] --> D3O["DELIVERABLE\nPattern comparison\nQuality, cost, latency, failures"]
-    end
-
-    subgraph DAY4["DAY 4 | PLANNED\nEvaluation and observability"]
-        direction TB
-        D4["TO LEARN\nGolden datasets\nRetrieval and answer metrics\nLLM-as-judge, logs, traces"] --> D4L["TO BUILD\nGolden-test harness\nEvidence, route, timing, cost\nWorkflow traces and scorecard"] --> D4O["DELIVERABLE\nEvaluation scorecard\nPass/fail gates\nObservability design"]
-    end
-
-    subgraph DAY5["DAY 5 | PLANNED\nProduction readiness"]
-        direction TB
-        D5["TO LEARN\nGuardrails and PII\nPrompt-injection defense\nResilience, economics, deployment"] --> D5L["TO BUILD\nInput/output controls\nRetry and fallback tests\nCost, risk, rollback plan"] --> D5O["DELIVERABLE\nProduction checklist\nCost and risk package\nArchitecture Review Board"]
-    end
-
-    D1O --> D2
-    D2O --> D3
-    D3O --> D4
-    D4O --> D5
+    D1 --> D2 --> D3
+    D3 --> D4 --> D5
+    D1 ~~~ D4
+    D2 ~~~ D5
 
     classDef complete fill:#d8f3dc,stroke:#2d6a4f,color:#1b4332
     classDef current fill:#fff3bf,stroke:#e09f3e,color:#7f4f24
     classDef planned fill:#dbeafe,stroke:#3b82f6,color:#1e3a8a
     classDef deliverable fill:#f3e8ff,stroke:#7e22ce,color:#581c87
-    class D1,D1T,D1L complete
-    class D1O,D2O,D3O,D4O,D5O deliverable
-    class D2,D2T,D2L current
-    class D3,D3T,D3L,D4,D4T,D4L,D5,D5T,D5L planned
+    class D1 complete
+    class D2 current
+    class D3,D4,D5 planned
 ```
 
 ### Day 1: Foundation and Engineering Decisions - Complete
