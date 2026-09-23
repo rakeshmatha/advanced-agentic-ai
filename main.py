@@ -1,11 +1,18 @@
-from mini_agent import chat, settings
+import sys
+
+from mini_agent import settings
+from mini_agent.rag import answer_question
 
 
 def main() -> None:
-    print(f"Using model: {settings.model}")
-    print("Sending a test prompt to OpenAI...")
-    answer = chat("Say hello in exactly 5 words.")
-    print(answer)
+    question = " ".join(sys.argv[1:]).strip()
+    if not question:
+        question = input("Ask a question about the documents: ").strip()
+    answer, sources = answer_question(question, settings)
+    print(f"\n{answer}\n")
+    print("Sources:")
+    for source in sources:
+        print(f"- {source}")
 
 
 if __name__ == "__main__":

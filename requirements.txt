@@ -18,6 +18,8 @@ langchain>=0.2.16
 langchain-core>=0.2.38
 langchain-openai>=0.1.22
 langchain-community>=0.2.16
+langchain-chroma>=0.1.2
+langchain-text-splitters>=0.2.2
 
 # LangGraph
 langgraph>=0.2.0
