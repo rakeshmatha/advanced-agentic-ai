@@ -37,60 +37,24 @@ assistant. Each phase adds a capability and a reviewable engineering artifact.
 ## Learning Graph
 
 ```mermaid
-flowchart LR
-    subgraph DAY1["DAY 1 | COMPLETE"]
-        direction TB
-        D1T["LEARN\nArchitecture patterns\nRAG vs fine-tuning\nPrompting | API vs MCP"]
-        D1B["BUILD\nLangChain + Chroma\nOpenAI embeddings\nLangGraph RAG flow\nSource-grounded answers"]
-        D1O["OUTPUT\nDecision matrix\nPolicy corpus\nTwo-use-case analysis"]
-        D1T --> D1B --> D1O
-    end
+flowchart TB
+    D1["DAY 1 | COMPLETE\nFOUNDATION + DECISIONS\n\nLEARN\nArchitecture patterns\nRAG vs fine-tuning vs prompting\nREST API vs MCP\n\nBUILD\nLangChain + Chroma\nLangGraph RAG flow\nSource-grounded policy answers\n\nOUTPUT\nDecision matrix + policy corpus"]
+    D2["DAY 2 | CURRENT\nAGENT ARCHITECTURE\n\nLEARN\nSingle vs multi-agent\nSequential vs router\nTools, escalation, handoffs\n\nBUILD\nRouter and classify_request\nPolicy -> Day 1 RAG\nAction -> human support\n\nOUTPUT\nSequential vs router comparison"]
+    D3["DAY 3 | PLANNED\nADVANCED ORCHESTRATION\n\nLEARN\nPlanner-executor + supervisor\nTools, MCP, handoffs\nRetries and context loss\n\nBUILD\nPlanner and supervisor flows\nShared tools + failure tests\n\nOUTPUT\nPattern comparison report"]
+    D4["DAY 4 | PLANNED\nEVALUATION + OBSERVABILITY\n\nLEARN\nGolden datasets + metrics\nLLM-as-judge + tracing\nRelease gates and drift\n\nBUILD\nGolden-test harness\nEvidence, route, cost, latency checks\n\nOUTPUT\nScorecard + observability design"]
+    D5["DAY 5 | PLANNED\nPRODUCTION READINESS\n\nLEARN\nGuardrails, PII, resilience\nPrompt injection + economics\nDeployment and incident response\n\nBUILD\nControls, retries, fallbacks\nCost model + risk register\n\nOUTPUT\nProduction checklist + ARB package"]
 
-    subgraph DAY2["DAY 2 | CURRENT"]
-        direction TB
-        D2T["LEARN\nSingle vs multi-agent\nSequential vs router\nTools | escalation | handoffs"]
-        D2B["BUILD\nclassify_request node\nPolicy -> Day 1 RAG\nAction -> human support\nTyped graph state"]
-        D2O["OUTPUT\nSequential vs router\nRoute analysis\nFailure analysis"]
-        D2T --> D2B --> D2O
-    end
-
-    subgraph DAY3["DAY 3 | PLANNED"]
-        direction TB
-        D3T["LEARN\nPlanner-executor\nSupervisor pattern\nTools | MCP | handoffs"]
-        D3B["BUILD\nPlanner flow\nSupervisor flow\nShared tools\nRetry and timeout tests"]
-        D3O["OUTPUT\nPattern comparison\nQuality | cost | latency\nFailure modes"]
-        D3T --> D3B --> D3O
-    end
-
-    subgraph DAY4["DAY 4 | PLANNED"]
-        direction TB
-        D4T["LEARN\nGolden datasets\nRetrieval + answer metrics\nLLM-as-judge | traces"]
-        D4B["BUILD\nGolden-test harness\nEvidence + route checks\nLatency + token checks\nWorkflow traces"]
-        D4O["OUTPUT\nEvaluation scorecard\nPass/fail gates\nObservability design"]
-        D4T --> D4B --> D4O
-    end
-
-    subgraph DAY5["DAY 5 | PLANNED"]
-        direction TB
-        D5T["LEARN\nGuardrails + PII\nPrompt-injection defense\nResilience | cost | deployment"]
-        D5B["BUILD\nInput/output controls\nRetry + fallback tests\nCost model\nRisk + rollback plan"]
-        D5O["OUTPUT\nProduction checklist\nCost + risk package\nARB presentation"]
-        D5T --> D5B --> D5O
-    end
-
-    D1O --> D2T
-    D2O --> D3T
-    D3O --> D4T
-    D4O --> D5T
+    D1 ~~~ D2 ~~~ D3
+    D3 --> D4
+    D4 ~~~ D5
 
     classDef complete fill:#d8f3dc,stroke:#2d6a4f,color:#1b4332
     classDef current fill:#fff3bf,stroke:#e09f3e,color:#7f4f24
     classDef planned fill:#dbeafe,stroke:#3b82f6,color:#1e3a8a
     classDef deliverable fill:#f3e8ff,stroke:#7e22ce,color:#581c87
-    class D1T,D1B complete
-    class D1O,D2O,D3O,D4O,D5O deliverable
-    class D2T,D2B current
-    class D3T,D3B,D4T,D4B,D5T,D5B planned
+    class D1 complete
+    class D2 current
+    class D3,D4,D5 planned
 ```
 
 ### Day 1: Foundation and Engineering Decisions - Complete
