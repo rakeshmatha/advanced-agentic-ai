@@ -59,11 +59,6 @@ flowchart LR
         D5T["LEARN\nGuardrails and PII\nResilience and cost\nDeployment"] --> D5B["BUILD\nControls and fallbacks\nCost model\nRisk register"] --> D5O["OUTPUT\nProduction checklist\nARB package"]
     end
 
-    D1O --> D2T
-    D2O --> D3T
-    D3O --> D4T
-    D4O --> D5T
-
     classDef complete fill:#d8f3dc,stroke:#2d6a4f,color:#1b4332
     classDef current fill:#fff3bf,stroke:#e09f3e,color:#7f4f24
     classDef planned fill:#dbeafe,stroke:#3b82f6,color:#1e3a8a
