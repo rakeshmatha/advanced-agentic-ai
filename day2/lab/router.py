@@ -3,8 +3,8 @@ from __future__ import annotations
 import sys
 from typing import Literal, NotRequired, Required, TypedDict
 
-from day1.lab.application import settings
-from day1.lab.application.workflow import answer_question
+from day1.lab.app import settings
+from day1.lab.app.workflow import answer_question
 from langgraph.graph import END, START, StateGraph
 
 

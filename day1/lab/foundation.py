@@ -1,4 +1,4 @@
-from day1.lab.application import chat, settings
+from day1.lab.app import chat, settings
 
 
 def main() -> None:

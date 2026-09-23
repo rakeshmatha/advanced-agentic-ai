@@ -41,3 +41,9 @@ contract are known. Consider MCP when several agents need the same capabilities.
 
 For every use case, record quality, latency, cost, maintainability, governance,
 assumptions, rejected alternatives, and the trigger for revisiting the choice.
+
+
+
+The most important Day 1 lesson is:
+
+Choose the simplest architecture that satisfies the business requirement, and justify the choice using quality, cost, latency, maintainability, and governance.
