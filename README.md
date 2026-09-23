@@ -40,41 +40,41 @@ assistant. Each phase adds a capability and a reviewable engineering artifact.
 flowchart LR
     subgraph DAY1["DAY 1 | COMPLETE"]
         direction TB
-        D1T["LEARN\nArchitecture patterns\nRAG vs fine-tuning vs prompting\nREST API vs MCP\nCost, latency, quality, maintainability"]
-        D1B["BUILD\nLangChain document loading\nChunking + OpenAI embeddings\nChroma persistent retrieval\nLangGraph retrieve -> answer\nPolicy answers with sources\nday1/lab/application/"]
-        D1O["OUTPUT\nDecision matrix\nCustomer-service policy corpus\nTwo-use-case analysis\nday1/lab/deliverable/"]
+        D1T["LEARN\nArchitecture patterns\nRAG vs fine-tuning\nPrompting | API vs MCP"]
+        D1B["BUILD\nLangChain + Chroma\nOpenAI embeddings\nLangGraph RAG flow\nSource-grounded answers"]
+        D1O["OUTPUT\nDecision matrix\nPolicy corpus\nTwo-use-case analysis"]
         D1T --> D1B --> D1O
     end
 
     subgraph DAY2["DAY 2 | CURRENT"]
         direction TB
-        D2T["LEARN\nSingle vs multi-agent\nSequential vs router\nTool boundaries and escalation\nHandoffs and failure behavior"]
-        D2B["BUILD\nclassify_request node\nPolicy route -> Day 1 RAG\nAction route -> human support\nTyped LangGraph state\nday2/lab/router.py"]
-        D2O["OUTPUT\nSequential vs router comparison\nRoute and failure analysis\nArchitecture decision note\nday2/lab/deliverable/"]
+        D2T["LEARN\nSingle vs multi-agent\nSequential vs router\nTools | escalation | handoffs"]
+        D2B["BUILD\nclassify_request node\nPolicy -> Day 1 RAG\nAction -> human support\nTyped graph state"]
+        D2O["OUTPUT\nSequential vs router\nRoute analysis\nFailure analysis"]
         D2T --> D2B --> D2O
     end
 
     subgraph DAY3["DAY 3 | PLANNED"]
         direction TB
-        D3T["LEARN\nPlanner-executor\nSupervisor / hierarchical agents\nTools, REST, MCP\nTimeouts, retries, context loss"]
-        D3B["BUILD\nPlanner workflow\nSupervisor workflow\nShared customer-service tools\nHandoff and failure tests"]
-        D3O["OUTPUT\nArchitecture comparison report\nQuality, cost, latency\nFailure-mode analysis"]
+        D3T["LEARN\nPlanner-executor\nSupervisor pattern\nTools | MCP | handoffs"]
+        D3B["BUILD\nPlanner flow\nSupervisor flow\nShared tools\nRetry and timeout tests"]
+        D3O["OUTPUT\nPattern comparison\nQuality | cost | latency\nFailure modes"]
         D3T --> D3B --> D3O
     end
 
     subgraph DAY4["DAY 4 | PLANNED"]
         direction TB
-        D4T["LEARN\nGolden datasets\nRetrieval, answer, task metrics\nLLM-as-judge\nLogs, traces, drift, release gates"]
-        D4B["BUILD\nGolden question harness\nEvidence and route checks\nLatency and token measurements\nWorkflow traces and scorecard"]
-        D4O["OUTPUT\nEvaluation scorecard\nPass/fail thresholds\nObservability dashboard design"]
+        D4T["LEARN\nGolden datasets\nRetrieval + answer metrics\nLLM-as-judge | traces"]
+        D4B["BUILD\nGolden-test harness\nEvidence + route checks\nLatency + token checks\nWorkflow traces"]
+        D4O["OUTPUT\nEvaluation scorecard\nPass/fail gates\nObservability design"]
         D4T --> D4B --> D4O
     end
 
     subgraph DAY5["DAY 5 | PLANNED"]
         direction TB
-        D5T["LEARN\nGuardrails and PII handling\nPrompt-injection defense\nResilience and fallbacks\nToken economics and deployment"]
-        D5B["BUILD\nInput/output controls\nRetry, timeout, fallback tests\nCost model and context controls\nRisk, rollback, incident plan"]
-        D5O["OUTPUT\nProduction-readiness checklist\nCost and risk package\nArchitecture Review Board presentation"]
+        D5T["LEARN\nGuardrails + PII\nPrompt-injection defense\nResilience | cost | deployment"]
+        D5B["BUILD\nInput/output controls\nRetry + fallback tests\nCost model\nRisk + rollback plan"]
+        D5O["OUTPUT\nProduction checklist\nCost + risk package\nARB presentation"]
         D5T --> D5B --> D5O
     end
 
