@@ -72,6 +72,7 @@ def answer_question(
     documents_dir: str | Path = DEFAULT_DOCUMENTS_DIR,
     vector_store_dir: str | Path = DEFAULT_VECTOR_STORE_DIR,
 ) -> tuple[str, list[str]]:
-    graph = build_customer_service_graph(settings, documents_dir, vector_store_dir)
-    result = graph.invoke({"question": question})
+    result = build_customer_service_graph(
+        settings, documents_dir, vector_store_dir
+    ).invoke({"question": question})
     return result["answer"], result.get("sources", [])

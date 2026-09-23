@@ -13,8 +13,7 @@ def build_client() -> OpenAI:
 
 
 def chat(prompt: str) -> str:
-    client = build_client()
-    response = client.responses.create(
+    response = build_client().responses.create(
         model=settings.model,
         input=prompt,
         temperature=settings.temperature,

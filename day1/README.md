@@ -12,8 +12,8 @@ architecture choices for the customer-service assistant.
 - `05_deliverable/`: initial decision-matrix submission
 - `foundation/`, `rag/`, and `engineering_decisions/`: runnable examples and supporting artifacts
 
-The reusable implementation remains in `mini_agent/`. Day folders contain
-learning-facing entry points and artifacts, not duplicated framework code.
+The reusable implementation is in `application/`. Everything needed for Day 1
+is kept under this folder; later days will own their own examples and code.
 
 ## Run the examples
 

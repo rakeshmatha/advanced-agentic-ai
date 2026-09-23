@@ -13,7 +13,7 @@ env/
 # Environment secrets
 .env
 .env.*
-.chroma/
+**/.chroma/
 
 # IDE/editor files
 .vscode/

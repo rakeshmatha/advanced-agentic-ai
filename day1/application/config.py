@@ -8,7 +8,7 @@ from pydantic import BaseModel, ConfigDict, Field, SecretStr
 
 
 def _project_root() -> Path:
-    return Path(__file__).resolve().parent.parent
+    return Path(__file__).resolve().parents[2]
 
 
 load_dotenv(_project_root() / ".env")

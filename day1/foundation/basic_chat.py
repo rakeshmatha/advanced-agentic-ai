@@ -1,4 +1,4 @@
-from mini_agent import chat, settings
+from day1.application import chat, settings
 
 
 def main() -> None:

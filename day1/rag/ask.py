@@ -1,7 +1,7 @@
 import sys
 
-from mini_agent import settings
-from mini_agent.workflow import answer_question
+from day1.application import settings
+from day1.application.workflow import answer_question
 
 
 def main() -> None:
