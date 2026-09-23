@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 import sys
-from typing import Literal, TypedDict
+from typing import Literal, NotRequired, Required, TypedDict
 
 from day1.lab.application import settings
 from day1.lab.application.workflow import answer_question
@@ -9,25 +9,31 @@ from langgraph.graph import END, START, StateGraph
 
 
 class RouterState(TypedDict, total=False):
-    question: str
+    question: Required[str]
+    route: NotRequired[Literal["policy", "escalate"]]
+    answer: NotRequired[str]
+    sources: NotRequired[list[str]]
+
+
+class RouterUpdate(TypedDict, total=False):
     route: Literal["policy", "escalate"]
     answer: str
     sources: list[str]
 
 
-def classify_request(state: RouterState) -> RouterState:
+def classify_request(state: RouterState) -> RouterUpdate:
     question = state["question"].lower()
     action_terms = ("change", "cancel", "update", "order", "address", "status")
     route = "escalate" if any(term in question for term in action_terms) else "policy"
     return {"route": route}
 
 
-def answer_policy_question(state: RouterState) -> RouterState:
+def answer_policy_question(state: RouterState) -> RouterUpdate:
     answer, sources = answer_question(state["question"], settings)
     return {"answer": answer, "sources": sources}
 
 
-def escalate_to_human(state: RouterState) -> RouterState:
+def escalate_to_human(state: RouterState) -> RouterUpdate:
     return {
         "answer": (
             "This request needs a human support representative because the current "
