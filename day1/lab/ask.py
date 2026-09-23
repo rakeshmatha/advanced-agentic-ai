@@ -9,6 +9,7 @@ def main() -> None:
     if not question:
         question = input("Ask a customer-service question: ").strip()
     answer, sources = answer_question(question, settings)
+    print(f"\nModel used: {settings.model}")
     print(f"\n{answer}\n")
     print("Sources:")
     for source in sources:
