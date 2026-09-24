@@ -1,53 +1,43 @@
 # Day 2 Lab
 
-The lab implements and compares two Day 2 agent patterns using the Day 1
-customer-service RAG capability: a sequential agent and a router agent.
+Day 2 class content: a full RAG system, the architecture decision framework, and
+the live build-vs-buy intro.
 
-## Sequential Agent
+## RAG system (LangChain + FAISS)
 
-```powershell
-python -m day2.lab.sequential "Can I return an unopened item?"
+```bash
+python -m day2.lab.rag_system                 # interactive chat
+python -m day2.lab.rag_system --chat          # same
+python -m day2.lab.rag_system "Can I return an unopened item?"
 ```
 
-Flow:
+Loads `docs/`, splits into chunks, embeds with `text-embedding-3-small`, stores
+and searches in FAISS, then answers grounded in the retrieved chunks with
+sources. The chat builds the index once, then each question retrieves top-4
+chunks and prints which files they came from. `/exit` leaves the chat.
 
-```text
-question -> policy answer -> response with sources
+Add `.md`, `.txt`, or `.pdf` files to `docs/` to grow the knowledge base.
+
+## Architecture decision framework (IN01)
+
+```bash
+architecture-decision
+architecture-decision "Live chat that answers policy questions in under 2 seconds."
+architecture-decision --demo
 ```
 
-## Router Agent
+Type a use case in plain English. The model scores the five axes (1-5). The
+IN01 **code** then picks Traditional / Workflow / Hybrid / Agent. `/demo`
+prints the four class examples; `/exit` quits.
 
-```powershell
-python -m day2.lab.router "Can I return an unopened item?"
-python -m day2.lab.router "I need to change my delivery address."
+## Build vs Buy intro (IN03)
+
+```bash
+build-vs-buy
+build-vs-buy "It will rain all week. What should we stock?"
 ```
 
-Flow:
-The router has two explicit paths:
-
-```text
-question -> classify -> policy RAG answer
-                  -> human escalation
-```
-
-The classifier is deliberately simple for learning. A later version can use a
-model-based intent classifier after we add evaluation data.
-
-## Tool Routes
-
-The router now demonstrates tool selection using the keys in `.env`:
-
-```powershell
-python -m day2.lab.router "What is the weather in Seattle?"
-python -m day2.lab.router "Search the web for current LangGraph news"
-```
-
-Routes:
-
-- `weather` -> OpenWeatherMap tool
-- `research` -> Tavily web-search tool
-- `policy` -> Day 1 RAG workflow
-- `escalate` -> human support response
-
-The API keys are optional. If a key is missing, the selected tool reports that
-it is unavailable instead of exposing a secret or crashing the router.
+Matches the class notebook: store WMT-2847 Bengaluru, live OpenWeatherMap +
+Tavily, a Python-only stocking recommendation, then three decision tables
+(REST vs MCP, framework, build vs buy). Needs `OPENWEATHERMAP_API_KEY` and
+`TAVILY_API_KEY`. MCP + LangGraph agents are Day 3.

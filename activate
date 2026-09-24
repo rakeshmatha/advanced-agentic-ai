@@ -1,0 +1,30 @@
+# Activate the project virtualenv from the repo root.
+# zsh/bash:  source ./activate
+#            . ./activate
+
+if [ ! -f .venv/bin/activate ]; then
+  echo "No .venv found. From this folder run: python3 -m venv .venv"
+  return 1 2>/dev/null || exit 1
+fi
+
+# shellcheck disable=SC1091
+source .venv/bin/activate
+
+# Day 1
+alias mechanics='python -m day1.lab.mechanics'
+alias prompts='python -m day1.lab.prompts'
+alias embeddings='python -m day1.lab.embeddings'
+# Day 2
+alias rag='python -m day2.lab.rag_system'
+alias architecture-decision='python -m day2.lab.decision_framework'
+alias build-vs-buy='python -m day2.lab.build_vs_buy'
+# Day 3
+alias restmcp='python -m day3.lab.rest_mcp'
+alias singlemulti='python -m day3.lab.single_multi_agent'
+alias assistant='python -m day3.lab.assistant'
+alias sequential='python -m day3.lab.sequential'
+alias router='python -m day3.lab.router'
+alias supervisor='python -m day3.lab.supervisor'
+alias compare='python -m day3.lab.compare'
+alias retail_multi_agent='python -m day3.retail_multi_agent'
+

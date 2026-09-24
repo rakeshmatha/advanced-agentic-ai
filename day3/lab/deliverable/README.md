@@ -1,4 +1,6 @@
 # Day 3 Deliverable
 
-Planned output: an orchestration comparison report covering quality, latency,
-cost, failure modes, and operational complexity.
+Compares REST vs MCP, single vs multi-agent, and the three orchestration patterns
+on shared tools and queries.
+
+See [architecture-comparison.md](architecture-comparison.md).

@@ -8,7 +8,7 @@ from pydantic import BaseModel, ConfigDict, Field, SecretStr
 
 
 def _project_root() -> Path:
-    return Path(__file__).resolve().parents[3]
+    return Path(__file__).resolve().parents[1]
 
 
 load_dotenv(_project_root() / ".env")
@@ -36,3 +36,6 @@ class Settings(BaseModel):
             OPENWEATHERMAP_API_KEY=os.getenv("OPENWEATHERMAP_API_KEY"),
             TAVILY_API_KEY=os.getenv("TAVILY_API_KEY"),
         )
+
+
+settings = Settings.from_env()

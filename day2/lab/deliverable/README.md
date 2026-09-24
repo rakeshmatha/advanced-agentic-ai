@@ -1,7 +1,6 @@
 # Day 2 Deliverable
 
-The deliverable compares the sequential and router patterns using the same
-customer-service scenario. It records why the router adds value, where it can
-fail, and what evidence is needed before introducing more agents.
+The deliverable records the Day 2 RAG pipeline, the IN01 architecture scores, and
+the technology choices.
 
 See [architecture-comparison.md](architecture-comparison.md).

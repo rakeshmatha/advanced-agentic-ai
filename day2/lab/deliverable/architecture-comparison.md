@@ -1,37 +1,39 @@
-# Day 2 Final Decision Matrix and Architecture Comparison
+# Day 2 Deliverable: RAG + Architecture Decision
 
-## Technology Selection
+## RAG system evidence
 
-| Decision area | Selected approach | Rationale | Alternative |
+`python -m day2.lab.rag_system "Can I return an unopened item?"` builds a FAISS
+index from `docs/` and answers with sources (`customer-service-policy.md`,
+`getting-started.md`). Pipeline: load → chunk (800/120) → embed
+(`text-embedding-3-small`) → FAISS → retrieve k=4 → grounded answer.
+
+## Architecture scores (IN01)
+
+`architecture-decision --demo` (or `python -m day2.lab.decision_framework --demo`):
+
+| Use case | Total | Override | Architecture |
 | --- | --- | --- | --- |
-| RAG components | LangChain | Reusable prompts, embeddings, retrievers, and model integrations | Python-only custom integrations deferred |
-| Orchestration | LangGraph | Explicit state, sequential nodes, and conditional routing | Plain functions less extensible |
-| Application glue | Python | Clear tests, configuration, and adapters | No extra abstraction needed |
-| Agent ownership | In-house | Control over grounding, escalation, data, and evaluation | Hosted harness deferred due to lock-in and cost |
-| Agent topology | Bounded workflow with router | Lower cost and easier review | Multi-agent coordination deferred |
+| Automated Returns Processing | 7 | no | Traditional Software |
+| Supplier Risk Intelligence | 21 | no | Agent |
+| Store Performance Analytics Reporter | 17 | no | Workflow (Chain) |
+| Customer Service Live Chat Assistant | 15 | YES | Hybrid (Agent + Workflow) |
 
-## Architecture Comparison
+Live chat scores in the workflow band but the hybrid override fires because
+complexity is high (4) while latency and cost are constrained (2/2): a workflow
+backbone handles simple traffic and a constrained agent handles the complex 15%.
 
-| Dimension | Sequential RAG | Router workflow |
+## Technology choices
+
+| Area | Choice | Rationale |
 | --- | --- | --- |
-| Flow | Retrieve, then answer | Classify, then choose a path |
-| Best fit | Questions covered by one knowledge source | Requests with distinct destinations |
-| Cost | Lower | Slightly higher orchestration cost |
-| Failure mode | Weak or missing evidence | Incorrect route or unclear intent |
-| Current use | Approved policy answers | Policy answers versus human escalation |
+| RAG components | LangChain | Reusable loaders, splitters, embeddings, retrievers |
+| Vector store | FAISS | Simple local similarity search for the lab |
+| Protocol | REST for this lab | One app, two HTTP APIs; MCP on Day 3 when tools are shared |
+| Weather / demand / LLM | Buy | OpenWeatherMap, Tavily, OpenAI - not Walmart differentiators |
+| Orchestration | Build Python-only | Two fetches + one prompt; buy a framework when the loop grows |
 
-## Decision
+## Review triggers
 
-Keep sequential RAG as the default policy path. Use the router only when a
-request requires a different capability or a human. Do not add multi-agent
-coordination until the router has an evaluation set and measurable failure data.
-
-## Review-Ready Rationale
-
-- **Assumption:** approved policy documents are the source of truth.
-- **Evidence:** both examples run against the same policy corpus.
-- **Risk:** keyword routing can misclassify ambiguous requests.
-- **Consequence:** the router is a learning implementation, not a production
-	intent classifier.
-- **Change trigger:** add a model classifier or specialist only when evaluation
-	shows routing errors that business requirements cannot tolerate.
+Move a use case toward agent/hybrid when multi-step reasoning, dynamic tools, or
+weekly-changing rules appear. Revisit RAG when documents grow or latency
+tightens.

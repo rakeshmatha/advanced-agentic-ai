@@ -2,10 +2,7 @@ from __future__ import annotations
 
 from openai import OpenAI
 
-from .config import Settings
-
-
-settings = Settings.from_env()
+from common.config import settings
 
 
 def build_client() -> OpenAI:
