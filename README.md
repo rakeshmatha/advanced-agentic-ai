@@ -320,37 +320,6 @@ python3 -m venv .venv
 source .venv/bin/activate
 ```
 
-### A live API lab fails
-
-Check that the relevant optional key is present, the service is reachable, and
-that the key has not expired or exceeded its quota. The RAG and most local
-teaching examples do not require both live API keys.
-
-### MCP import or API errors
-
-Day 3 uses the FastMCP API from the `mcp` 1.x line. Install from the pinned
-`requirements.txt` rather than upgrading `mcp` independently to an incompatible
-major version.
-
-### GitHub authentication fails
-
-GitHub does not accept account passwords for Git over HTTPS. Use `gh auth login`,
-a personal access token as the HTTPS password, or an SSH remote:
-
-```bash
-git remote set-url origin git@github.com:rakeshmatha/advanced-agentic-ai.git
-```
-
-## Security and responsible use
-
-- Keep `.env` and API keys out of Git history, logs, screenshots, and notebooks.
-- Treat model output as untrusted data; validate structured output before using it.
-- Do not use these classroom tools for real customer actions without authorization,
-  audit logging, access controls, retries, timeouts, and human escalation.
-- Avoid sending confidential, personal, or regulated data to external model or
-  search APIs unless the applicable policy explicitly permits it.
-- Day 4 and Day 5 are planned specifically to address evaluation, observability,
-  guardrails, resilience, cost, and production readiness.
 
 ## Completion criteria
 
@@ -363,9 +332,4 @@ The complete learning path should produce an assistant that can:
 5. Compare orchestration patterns using quality, latency, and cost evidence.
 6. Pass a golden test set and report operational metrics.
 7. Explain its production controls and architecture choices in a reviewable note.
-
-## License and course context
-
-This repository is a course companion and learning project. Add an explicit
-license before reusing the code in another project, and follow the policies of
-the course, your organization, and each external API provider.
+ 
