@@ -19,6 +19,60 @@ day4/       Planned: evaluation and observability
 day5/       Planned: production readiness and architecture review
 ```
 
+## Learning Graph
+
+```mermaid
+flowchart LR
+    subgraph DAY1["DAY 1 | COMPLETE"]
+        direction TB
+        D1T["LEARN\nLLM mechanics\nPrompt engineering\nEmbeddings"] --> D1B["BUILD\nToken and prompt labs\nEmbedding experiments\nPlain OpenAI SDK"] --> D1O["OUTPUT\nFoundation evidence\nRAG prerequisite"]
+    end
+
+    subgraph DAY2["DAY 2 | COMPLETE"]
+        direction TB
+        D2T["LEARN\nRAG systems\nArchitecture decisions\nAPIs and build-vs-buy"] --> D2B["BUILD\nLangChain + FAISS\nFive-axis scorer\nLive API integration"] --> D2O["OUTPUT\nRAG system\nArchitecture comparison"]
+    end
+
+    subgraph DAY3["DAY 3 | COMPLETE"]
+        direction TB
+        D3T["LEARN\nREST vs MCP\nSingle vs multi-agent\nOrchestration patterns"] --> D3B["BUILD\nREST tools + MCP server\nSpecialist agents\nSequential/router/supervisor"] --> D3O["OUTPUT\nWorking assistant\nOrchestration comparison"]
+    end
+
+    subgraph DAY4["DAY 4 | PLANNED"]
+        direction TB
+        D4T["LEARN\nEvaluation\nQuality metrics\nObservability"] --> D4B["BUILD\nEvaluation harness\nEvidence checks\nTracing and gates"] --> D4O["OUTPUT\nEvaluation scorecard\nObservability design"]
+    end
+
+    subgraph DAY5["DAY 5 | PLANNED"]
+        direction TB
+        D5T["LEARN\nGuardrails and PII\nResilience and cost\nDeployment"] --> D5B["BUILD\nControls and fallbacks\nCost model\nRisk register"] --> D5O["OUTPUT\nProduction checklist\nArchitecture review"]
+    end
+
+    DAY1 ~~~ DAY2 ~~~ DAY3 ~~~ DAY4 ~~~ DAY5
+
+    classDef complete fill:#d8f3dc,stroke:#2d6a4f,color:#1b4332,stroke-width:3px,font-weight:bold
+    classDef planned fill:#dbeafe,stroke:#3b82f6,color:#1e3a8a,stroke-width:3px,font-weight:bold
+    classDef deliverable fill:#f3e8ff,stroke:#7e22ce,color:#581c87,stroke-width:3px,font-weight:bold
+
+    class D1T,D1B,D2T,D2B,D3T,D3B complete
+    class D1O,D2O,D3O,D4O,D5O deliverable
+    class D4T,D4B,D5T,D5B planned
+
+    style DAY1 fill:#f0fdf4,stroke:#2d6a4f,stroke-width:3px
+    style DAY2 fill:#f0fdf4,stroke:#2d6a4f,stroke-width:3px
+    style DAY3 fill:#f0fdf4,stroke:#2d6a4f,stroke-width:3px
+    style DAY4 fill:#eff6ff,stroke:#3b82f6,stroke-width:3px
+    style DAY5 fill:#eff6ff,stroke:#3b82f6,stroke-width:3px
+```
+
+### Diagram Legend
+
+| Visual | Meaning |
+| --- | --- |
+| Green | Completed learning and implementation |
+| Blue | Planned learning and implementation |
+| Purple | Day deliverable or review artifact |
+
 ## Setup
 
 ```bash
