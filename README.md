@@ -11,121 +11,103 @@ orchestration.
 > **Learning principle:** do not add an agent, framework, vector store, or
 > protocol until the problem justifies it.
 
-Every day folder contains only what that day's class taught. Shared plumbing
-lives in `common/`, while each day remains independently understandable and
-reviewable.
+Shared plumbing lives in `common/`; each day folder contains only that day's
+teaching material, labs, and deliverables.
 
 ## What this project demonstrates
 
 - LLM mechanics: tokens, cost, context windows, memory, and temperature.
-- Prompt engineering: zero-shot, few-shot, reasoning prompts, role prompting,
-  and structured output.
+- Prompt engineering: zero-shot, few-shot, reasoning, roles, and structured output.
 - Embeddings and semantic similarity as the foundation for retrieval.
-- A source-grounded RAG system using LangChain and FAISS.
-- A five-axis architecture decision framework for choosing traditional software,
-  workflows, agents, or a hybrid.
-- REST versus MCP, including a real FastMCP server and client-side tool
-  discovery.
-- Single-agent, coordinator/specialist, sequential, router, and supervisor
-  designs.
-- Trade-offs involving quality, latency, cost, reliability, maintainability,
-  governance, and operational complexity.
+- Source-grounded RAG with LangChain and FAISS.
+- A five-axis framework for choosing traditional software, workflows, agents, or hybrid designs.
+- REST versus MCP, including a real FastMCP server and tool discovery.
+- Single-agent, coordinator/specialist, sequential, router, and supervisor designs.
+- Trade-offs involving quality, latency, cost, reliability, governance, and maintainability.
 
 ## Learning Graph
 
+The **BUILD** cards show exactly where implementation exists in the repository.
+The **OUTPUT** cards show the reviewable artifact. Green is built today; gray is
+planned work that has not been implemented yet.
+
 ```mermaid
+%%{init: {"theme": "base", "themeVariables": {"background": "#0b1120", "primaryTextColor": "#f8fafc", "lineColor": "#94a3b8", "fontFamily": "Arial", "fontSize": "15px"}}}%%
 flowchart LR
     subgraph DAY1["DAY 1 | COMPLETE"]
         direction TB
-        D1T["LEARN\nLLM mechanics\nPrompt engineering\nEmbeddings"] --> D1B["BUILD\nToken and prompt labs\nEmbedding experiments\nPlain OpenAI SDK"] --> D1O["OUTPUT\nFoundation evidence\nRAG prerequisite"]
+        D1T["LEARN<br/>LLM mechanics<br/>Prompt engineering<br/>Embeddings"] --> D1B["BUILD<br/>day1/lab/mechanics.py<br/>day1/lab/prompts.py<br/>day1/lab/embeddings.py"] --> D1O["OUTPUT<br/>day1/lab/deliverable/<br/>Foundation evidence"]
     end
-
     subgraph DAY2["DAY 2 | COMPLETE"]
         direction TB
-        D2T["LEARN\nRAG systems\nArchitecture decisions\nAPIs and build-vs-buy"] --> D2B["BUILD\nLangChain + FAISS\nFive-axis scorer\nLive API integration"] --> D2O["OUTPUT\nRAG system\nArchitecture comparison"]
+        D2T["LEARN<br/>RAG systems<br/>Architecture decisions<br/>APIs and build-vs-buy"] --> D2B["BUILD<br/>day2/lab/rag_system.py<br/>day2/lab/decision_framework.py<br/>day2/lab/build_vs_buy.py"] --> D2O["OUTPUT<br/>day2/lab/deliverable/<br/>RAG + architecture comparison"]
     end
-
     subgraph DAY3["DAY 3 | COMPLETE"]
         direction TB
-        D3T["LEARN\nREST vs MCP\nSingle vs multi-agent\nOrchestration patterns"] --> D3B["BUILD\nREST tools + MCP server\nSpecialist agents\nSequential/router/supervisor"] --> D3O["OUTPUT\nWorking assistant\nOrchestration comparison"]
+        D3T["LEARN<br/>REST vs MCP<br/>Single vs multi-agent<br/>Orchestration patterns"] --> D3B["BUILD<br/>day3/lab/<br/>day3/retail_multi_agent/<br/>REST + MCP + LangGraph"] --> D3O["OUTPUT<br/>day3/lab/deliverable/<br/>Agent and orchestration comparison"]
     end
-
     subgraph DAY4["DAY 4 | PLANNED"]
         direction TB
-        D4T["LEARN\nEvaluation\nQuality metrics\nObservability"] --> D4B["BUILD\nEvaluation harness\nEvidence checks\nTracing and gates"] --> D4O["OUTPUT\nEvaluation scorecard\nObservability design"]
+        D4T["LEARN<br/>Evaluation<br/>Quality metrics<br/>Observability"] --> D4B["BUILD LOCATION<br/>day4/lab/<br/>Not implemented yet"] --> D4O["OUTPUT<br/>Evaluation scorecard<br/>Observability design"]
     end
-
     subgraph DAY5["DAY 5 | PLANNED"]
         direction TB
-        D5T["LEARN\nGuardrails and PII\nResilience and cost\nDeployment"] --> D5B["BUILD\nControls and fallbacks\nCost model\nRisk register"] --> D5O["OUTPUT\nProduction checklist\nArchitecture review"]
+        D5T["LEARN<br/>Guardrails and PII<br/>Resilience and cost<br/>Deployment"] --> D5B["BUILD LOCATION<br/>day5/lab/<br/>Not implemented yet"] --> D5O["OUTPUT<br/>Production checklist<br/>Architecture review"]
     end
 
     DAY1 ~~~ DAY2 ~~~ DAY3 ~~~ DAY4 ~~~ DAY5
 
-    classDef complete fill:#d8f3dc,stroke:#2d6a4f,color:#1b4332,stroke-width:3px,font-weight:bold
-    classDef planned fill:#dbeafe,stroke:#3b82f6,color:#1e3a8a,stroke-width:3px,font-weight:bold
-    classDef deliverable fill:#f3e8ff,stroke:#7e22ce,color:#581c87,stroke-width:3px,font-weight:bold
-
-    class D1T,D1B,D2T,D2B,D3T,D3B complete
+    classDef complete fill:#172554,stroke:#38bdf8,color:#f8fafc,stroke-width:3px,font-weight:bold
+    classDef planned fill:#1e293b,stroke:#64748b,color:#f8fafc,stroke-width:3px
+    classDef build fill:#064e3b,stroke:#34d399,color:#ecfdf5,stroke-width:3px,font-weight:bold
+    classDef deliverable fill:#581c87,stroke:#d8b4fe,color:#faf5ff,stroke-width:3px
+    class D1T,D2T,D3T complete
+    class D1B,D2B,D3B build
     class D1O,D2O,D3O,D4O,D5O deliverable
     class D4T,D4B,D5T,D5B planned
-
-    style DAY1 fill:#f0fdf4,stroke:#2d6a4f,stroke-width:3px
-    style DAY2 fill:#f0fdf4,stroke:#2d6a4f,stroke-width:3px
-    style DAY3 fill:#f0fdf4,stroke:#2d6a4f,stroke-width:3px
-    style DAY4 fill:#eff6ff,stroke:#3b82f6,stroke-width:3px
-    style DAY5 fill:#eff6ff,stroke:#3b82f6,stroke-width:3px
+    style DAY1 fill:#0f172a,stroke:#38bdf8,stroke-width:3px,color:#f8fafc
+    style DAY2 fill:#0f172a,stroke:#38bdf8,stroke-width:3px,color:#f8fafc
+    style DAY3 fill:#0f172a,stroke:#38bdf8,stroke-width:3px,color:#f8fafc
+    style DAY4 fill:#111827,stroke:#64748b,stroke-width:3px,color:#f8fafc
+    style DAY5 fill:#111827,stroke:#64748b,stroke-width:3px,color:#f8fafc
 ```
 
 ### Diagram legend
 
 | Visual | Meaning |
 | --- | --- |
-| Green | Completed learning and implementation |
-| Blue | Planned learning and implementation |
-| Purple | Day deliverable or review artifact |
+| Dark blue | Completed learning |
+| Dark green | Existing implementation and repository path |
+| Dark slate | Planned work or future implementation location |
+| Purple | Deliverable or review artifact |
 
 ## Repository map
 
 ```text
-common/
-  config.py                 Shared environment and model settings
+common/config.py             Shared environment and model settings
 
-day1/
-  topics/                   Concepts, explanations, and comparison tables
-  lab/                      Runnable mechanics, prompt, and embedding labs
-  lab/deliverable/          Reflection and evidence
+day1/topics/                 Concepts and comparison tables
+day1/lab/                    Mechanics, prompts, embeddings, deliverable
 
-day2/
-  topics/                   RAG, architecture scoring, and API concepts
-  lab/                      RAG, decision framework, and build-vs-buy labs
-  lab/docs/                 Knowledge base used by the RAG lab
-  lab/deliverable/          Architecture comparison and evidence
+day2/topics/                 RAG, architecture scoring, API concepts
+day2/lab/                    RAG, decision framework, build-vs-buy, docs
 
-day3/
-  topics/                   REST/MCP, agents, and orchestration concepts
-  lab/                      Tools, agents, MCP server, and orchestration labs
-  retail_multi_agent/       Product, inventory, order, and policy specialists
-  lab/deliverable/          Architecture and pattern comparison
+day3/topics/                 REST/MCP, agents, orchestration concepts
+day3/lab/                    Tools, agents, MCP server, orchestration
+ day3/retail_multi_agent/     Product, inventory, order, policy specialists
 
-day4/                       Planned evaluation and observability work
-day5/                       Planned production-readiness work
-activate                    Virtualenv activation and command aliases
-requirements.txt            Python dependencies
+day4/                         Planned evaluation and observability
+day5/                         Planned production readiness
+activate                      Virtualenv activation and aliases
+requirements.txt              Python dependencies
 ```
 
 ## Quick start
 
-### 1. Requirements
+Requirements: Python 3.10, 3.11, or 3.12; an OpenAI key; and optional
+OpenWeatherMap and Tavily keys for live API labs.
 
-- Python 3.10, 3.11, or 3.12.
-- An OpenAI API key for model-backed labs.
-- Optional OpenWeatherMap and Tavily keys for the live-API labs.
-- Internet access for API-backed examples.
-
-### 2. Create the environment
-
-macOS/Linux:
+### macOS/Linux
 
 ```bash
 git clone https://github.com/rakeshmatha/advanced-agentic-ai.git
@@ -136,7 +118,7 @@ python -m pip install --upgrade pip
 pip install -r requirements.txt
 ```
 
-Windows PowerShell:
+### Windows PowerShell
 
 ```powershell
 git clone https://github.com/rakeshmatha/advanced-agentic-ai.git
@@ -147,14 +129,7 @@ python -m pip install --upgrade pip
 pip install -r requirements.txt
 ```
 
-After the first setup, from macOS/Linux you can use `source ./activate`. This
-activates `.venv` and loads the short lab commands. PowerShell uses
-`. .\Activate.ps1` when that helper is available in the local checkout.
-
-### 3. Configure environment variables
-
-Create `.env` in the repository root. Never commit this file or paste keys into
-source code.
+Create `.env` in the repository root and never commit it:
 
 ```dotenv
 OPENAI_API_KEY=your-openai-key
@@ -162,51 +137,36 @@ OPENWEATHERMAP_API_KEY=your-openweathermap-key
 TAVILY_API_KEY=your-tavily-key
 ```
 
-`OPENAI_API_KEY` is required for most labs. The weather and demand keys are only
-needed by the live API examples. Tokenization and some Day 1 demonstrations can
-run without an API key.
+On macOS/Linux, `source ./activate` activates `.venv` and loads all aliases.
 
 ## Run the labs
 
-Activate the environment first:
-
 ```bash
-source ./activate
+# Day 1 - model and prompt foundations
+mechanics
+mechanics --chat
+mechanics "SKU-123"
+prompts
+prompts --chat
+embeddings
+embeddings --chat
+
+# Day 2 - retrieval and architecture decisions
+rag
+rag "Can I return an unopened item?"
+architecture-decision
+architecture-decision --demo
+build-vs-buy
+
+# Day 3 - tools, agents, and orchestration
+restmcp
+singlemulti
+assistant
+compare
+retail_multi_agent
 ```
 
-### Day 1 - model and prompt foundations
-
-```bash
-mechanics                         # tokens, cost, context, memory, temperature
-mechanics --chat                  # interactive mechanics demonstration
-mechanics "SKU-123"               # one-shot token and cost inspection
-prompts                           # zero-shot, few-shot, reasoning, role, schema
-prompts --chat                    # try prompt patterns with your own text
-embeddings                        # text-to-vector demonstration
-embeddings --chat                 # compare semantic similarity interactively
-```
-
-### Day 2 - retrieval and architecture decisions
-
-```bash
-rag                               # interactive RAG chat over day2/lab/docs/
-rag "Can I return an unopened item?"  # one-shot grounded question
-architecture-decision             # score a use case interactively
-architecture-decision --demo      # run class examples
-build-vs-buy                     # live stock recommendation and trade-offs
-```
-
-### Day 3 - tools, agents, and orchestration
-
-```bash
-restmcp                           # REST vs MCP and framework comparison
-singlemulti                       # single-agent vs coordinator/specialists
-assistant                         # interactive Walmart assistant
-compare                           # sequential vs router vs supervisor
-retail_multi_agent                # multi-domain retail assistant
-```
-
-Focused examples:
+Focused Day 3 examples:
 
 ```bash
 assistant "Where is my order WM-2024-002?"
@@ -219,12 +179,10 @@ retail_multi_agent supervisor "Price milk, check stock, and explain the return p
 python -m day3.lab.mcp_server
 ```
 
-Every alias maps to a module such as `python -m day3.lab.compare`, so the labs
+Every alias maps to a module such as `python -m day3.lab.compare`, so commands
 can also be run without aliases.
 
 ## Architecture overview
-
-The labs evolve from a simple model call into a grounded, tool-using assistant:
 
 ```mermaid
 flowchart TD
@@ -239,47 +197,43 @@ flowchart TD
     C --> L[LLM reasoning and response]
     L --> G[Quality and safety checks]
     G --> A[Grounded answer or escalation]
-
     Docs[(Policy documents)] --> R
     APIs[(REST APIs)] --> T
     MCP[(MCP server)] --> T
 ```
 
-This is a teaching architecture, not a claim that every production assistant
-needs all of these components. The Day 2 decision framework is deliberately used
-to avoid unnecessary agentic complexity.
+This is a teaching architecture, not a requirement that every application use
+every component. The Day 2 decision framework helps avoid unnecessary agentic
+complexity.
 
 ## Key design decisions
 
 ### RAG versus model memory
 
-Use RAG when answers must be grounded in changing or private documents. The Day 2
-RAG lab loads documents, splits them into chunks, embeds them, searches FAISS,
-and asks the model to answer from the retrieved context with source references.
-Questions outside the knowledge base should be refused rather than guessed.
+Use RAG when answers must be grounded in changing or private documents. The Day
+2 lab chunks documents, embeds them, searches FAISS, and answers from retrieved
+context with sources. Questions outside the knowledge base should be refused.
 
-### Choosing an architecture
+### Architecture selection
 
-The IN01 framework scores five axes from 1 to 5:
+The IN01 framework scores five axes from 1 to 5. Python rules, not the LLM,
+make the final choice.
 
 | Axis | Low score | High score |
 | --- | --- | --- |
 | Task complexity | Single step | Multi-step and dynamic |
-| Latency tolerance | Real-time | Batch is acceptable |
-| Cost ceiling | Pennies per query | Dollars per query |
-| Risk tolerance | Very low | Errors can be caught downstream |
+| Latency tolerance | Real-time | Batch acceptable |
+| Cost ceiling | Pennies/query | Dollars/query |
+| Risk tolerance | Very low | Errors caught downstream |
 | Update frequency | Rarely changes | Changes frequently |
 
-The score bands are **5-12 traditional**, **13-18 workflow**, and **19-25
-agent**, with a hybrid override for high-complexity tasks that also have tight
-latency or cost constraints. Python rules—not the LLM—make the final choice.
+Score bands: **5-12 traditional**, **13-18 workflow**, **19-25 agent**. A hybrid
+override applies to high-complexity tasks with tight latency or cost constraints.
 
 ### REST versus MCP
 
-- Use REST when one application owns a small number of tools and explicit API
-  contracts are sufficient.
-- Use MCP when multiple agents or hosts need to discover and share the same tool
-  definitions without copying schemas into every client.
+- Use REST when one application owns a small number of tools.
+- Use MCP when multiple agents or hosts need to discover and share tool definitions.
 - Protocol choice is separate from the decision to use an agent.
 
 ### Orchestration patterns
@@ -287,7 +241,7 @@ latency or cost constraints. Python rules—not the LLM—make the final choice.
 | Pattern | Control flow | Best fit | Main trade-off |
 | --- | --- | --- | --- |
 | Sequential | classify -> tools -> quality -> format | Fixed, auditable steps | More calls and fixed latency |
-| Router | classify -> one specialist | Clear, mostly separate intents | Mis-routing risk |
+| Router | classify -> one specialist | Clear, separate intents | Mis-routing risk |
 | Supervisor | supervisor <-> workers until finish | Multi-domain tasks and retries | Higher latency and complexity |
 
 ## Day-by-day guide
@@ -300,36 +254,39 @@ latency or cost constraints. Python rules—not the LLM—make the final choice.
 | Day 4 | Planned | Evaluation and observability | Evaluation scorecard |
 | Day 5 | Planned | Production readiness and architecture review | Production checklist and ARB package |
 
-Each day's `topics/` explains the concepts and each `lab/deliverable/` contains
-the artifact that can be reviewed independently.
+See each day's `topics/` for concepts and `lab/deliverable/` for reviewable
+artifacts.
 
 ## Troubleshooting
 
-### `OPENAI_API_KEY is missing`
-
-Create `.env` in the repository root, confirm the variable name is exactly
-`OPENAI_API_KEY`, and run the command from the repository root. Then reload the
-shell or run `source ./activate` again.
-
-### `No .venv found`
-
-Create the environment first:
+- **`OPENAI_API_KEY is missing`:** create `.env` in the repository root and reload the shell.
+- **`No .venv found`:** run `python3 -m venv .venv`, then activate it.
+- **Live API failure:** check the relevant optional key, service availability, and quota.
+- **MCP import errors:** keep `mcp` on the 1.x line as pinned in `requirements.txt`.
+- **GitHub authentication:** use `gh auth login`, a personal access token for HTTPS, or SSH:
 
 ```bash
-python3 -m venv .venv
-source .venv/bin/activate
+git remote set-url origin git@github.com:rakeshmatha/advanced-agentic-ai.git
 ```
 
+## Security and responsible use
+
+- Keep `.env` and API keys out of Git history, logs, screenshots, and notebooks.
+- Treat model output as untrusted data and validate structured output.
+- Do not use classroom tools for real customer actions without authorization,
+  audit logging, access controls, retries, timeouts, and human escalation.
+- Do not send confidential or regulated data to external APIs without approval.
 
 ## Completion criteria
 
-The complete learning path should produce an assistant that can:
+The complete learning path should produce an assistant that can answer supported
+policy questions with evidence, refuse or escalate unsupported questions, choose
+an architecture using explicit trade-offs, use external tools, compare
+orchestration patterns with quality/latency/cost evidence, pass a golden test
+set, report operational metrics, and explain its production controls.
 
-1. Answer supported policy questions using retrieved evidence.
-2. Refuse or escalate unsupported questions instead of inventing answers.
-3. Select an appropriate architecture based on explicit trade-offs.
-4. Use external tools through suitable interfaces.
-5. Compare orchestration patterns using quality, latency, and cost evidence.
-6. Pass a golden test set and report operational metrics.
-7. Explain its production controls and architecture choices in a reviewable note.
- 
+## License and course context
+
+This is a course companion and learning project. Add an explicit license before
+reusing the code elsewhere, and follow the policies of the course, organization,
+and external API providers.
