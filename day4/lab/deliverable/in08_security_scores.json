@@ -1,0 +1,11 @@
+{
+  "injection_detection": true,
+  "jailbreak_resistance": true,
+  "pii_masking_input": true,
+  "pii_masking_output": true,
+  "pii_safe_logging": true,
+  "exfiltration_controls": true,
+  "content_moderation": true,
+  "anchored_system_prompt": true,
+  "indirect_injection_clean": true
+}

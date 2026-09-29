@@ -1,0 +1,102 @@
+DAY 4 HOMEWORK — OFFLINE TRAINING ASSESSMENT
+========================================================
+IMPORTANT: This report is generated from local mocks and synthetic data.
+It is not a production certification or evidence about a live Walmart system.
+Assessment date: 2026-09-29 16:12 UTC
+Scope: IN06 resilience, IN07 readiness controls, IN08 security, IN09 operations.
+
+IN06 RESILIENCE SMOKE CHECKS
+-------------------------------
+  [PASS] bounded_retry_backoff
+  [PASS] circuit_breaker_open_half_open_recovery
+  [PASS] timeout_returns_before_slow_call
+  [PASS] trusted_sku_validation
+  [PASS] invalid_sku_rejected
+  [PASS] inventory_fallback
+
+DOMAIN 1: RELIABILITY + OBSERVABILITY (IN07)
+--------------------------------------------
+Score: 12 / 12
+
+  [PASS] Input length and character validation
+  [PASS] Prompt injection detection
+  [PASS] System prompt does not leak architecture
+  [PASS] Temperature <= 0.2 for deterministic use cases
+  [PASS] Output guardrail (toxicity / PII filter)
+  [PASS] Hallucination grounding check
+  [PASS] Structured audit log per request
+  [PASS] Graceful fallback on model failure
+  [PASS] SLA budget enforced (timeout per call)
+  [PASS] Content moderation on input and output
+  [PASS] PII masking before logging
+  [PASS] Rate limiting per user / session
+
+DOMAIN 2: SECURITY CONTROLS (IN08)
+----------------------------------
+Score: 9 / 9
+
+  [PASS] Direct prompt injection detection
+  [PASS] Jailbreak resistance
+  [PASS] PII masking on user input
+  [PASS] PII masking on model output
+  [PASS] PII-safe audit logging
+  [PASS] Data exfiltration controls
+  [PASS] Local demo content moderation
+  [PASS] Anchored system prompt
+  [PASS] Indirect injection handling for tool/RAG outputs
+
+DOMAIN 3: GOVERNANCE + SCALING + RESILIENCE (IN09)
+--------------------------------------------------
+Score: 9 / 9
+
+  [PASS] Data lineage tracking
+  [PASS] Prompt versioning
+  [PASS] Structured audit trail
+  [PASS] Model routing
+  [PASS] Streaming demonstration
+  [PASS] SLO measurement
+  [PASS] Fallback chain
+  [PASS] Rate limiting
+  [PASS] Graceful degradation
+
+SYNTHETIC SLO MEASUREMENT
+---------------------------
+Calls measured: 5 (synthetic fixture)
+Percentile method: nearest-rank
+  [OK] p50_latency_ms: measured=400.0 target=800.0
+  [BREACH] p95_latency_ms: measured=2500.0 target=2000.0
+  [OK] p99_latency_ms: measured=2500.0 target=4000.0
+  [BREACH] availability_pct: measured=80.0 target=99.9
+  [BREACH] block_rate_pct: measured=20.0 target=1.0
+
+FINAL TRAINING SCORE
+--------------------
+Score: 30 / 30
+Training rubric result: APPROVED WITH MONITORING (training score only)
+Production decision: NOT ASSESSED — live traffic, access controls, deployment,
+human escalation, and operational monitoring were not tested by this lab.
+
+KNOWN LIMITATIONS / FOLLOW-UP
+----------------------------
+- Prompt-injection, PII, and moderation rules are small heuristic demonstrations.
+- Model, cache, inventory, moderation, and SLO observations use local fixtures.
+- The timeout uses a daemon worker; Python cannot forcibly cancel arbitrary code.
+- The rate limiter is in-memory and process-local, not distributed.
+- Validate security controls with approved adversarial tests and human review.
+
+IN07 INTENTIONALLY FLAWED STARTER — DOCUMENTED DEFECTS
+------------------------------------------------------
+- no input length/character validation
+- no prompt-injection detection
+- architecture/model details exposed in the prompt
+- high temperature for factual retail answers
+- no output PII/toxicity guardrail
+- no grounding check for factual claims
+- no structured per-request audit record
+- no fallback when the model API fails
+
+NEXT ACTIONS
+------------
+1. Review every FAIL and attach evidence before changing the score.
+2. Assign an owner and due date to unresolved security and reliability gaps.
+3. Re-run with approved system integrations and a defined SLO window before any deployment decision.

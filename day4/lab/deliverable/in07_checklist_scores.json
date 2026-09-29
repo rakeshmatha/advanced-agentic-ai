@@ -1,0 +1,22 @@
+{
+  "baseline_score": 0,
+  "baseline_max_score": 12,
+  "baseline_note": "Intentionally flawed training starter; score from its documented missing controls.",
+  "fixed_score": 12,
+  "failures": [],
+  "checklist": {
+    "input_validation": true,
+    "injection_detection": true,
+    "no_architecture_leak": true,
+    "low_temperature": true,
+    "output_guardrail": true,
+    "hallucination_check": true,
+    "audit_log": true,
+    "graceful_fallback": true,
+    "sla_timeout": true,
+    "content_moderation": true,
+    "pii_masking": true,
+    "rate_limiting": true
+  },
+  "evidence_scope": "automated local behavior checks with synthetic inputs"
+}

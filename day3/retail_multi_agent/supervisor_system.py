@@ -16,7 +16,7 @@ from pydantic import BaseModel, Field
 
 from day3.lab.llm import build_llm
 
-from .agents import run_agent
+from .agents import AGENT_FINDING_GUARD, run_agent
 
 MAX_STEPS = 6
 
@@ -86,6 +86,12 @@ def supervisor(state: SupervisorState) -> SupervisorState:
             ),
         ]
     )
+    if decision.next != "finish" and decision.next in used:
+        # Do not let an LLM repeat a worker indefinitely. Synthesize from the
+        # findings already available and report any still-missing information.
+        return {"next": "finish"}
+    if decision.next != "finish" and decision.next not in {"product", "inventory", "orders", "policy"}:
+        return {"next": "finish"}
     return {"next": decision.next}
 
 
@@ -93,6 +99,9 @@ def _make_agent_node(name: str):
     def node(state: SupervisorState) -> SupervisorState:
         context = _findings_text(state.get("findings", []))
         result = run_agent(name, state["question"], context=context)
+        finding_guard = AGENT_FINDING_GUARD.get()
+        if finding_guard is not None:
+            result = finding_guard(result)
         findings = [*state.get("findings", []), {"agent": name, "result": result}]
         return {"findings": findings, "steps": state.get("steps", 0) + 1}
 

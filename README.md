@@ -46,9 +46,9 @@ flowchart LR
         direction TB
         D3T["LEARN<br/>REST vs MCP<br/>Single vs multi-agent<br/>Orchestration patterns"] --> D3B["BUILD<br/>day3/lab/<br/>day3/retail_multi_agent/<br/>REST + MCP + LangGraph"] --> D3O["OUTPUT<br/>day3/lab/deliverable/<br/>Agent and orchestration comparison"]
     end
-    subgraph DAY4["DAY 4 | PLANNED"]
+    subgraph DAY4["DAY 4 | RUNNABLE PRACTICE"]
         direction TB
-        D4T["LEARN<br/>Evaluation<br/>Quality metrics<br/>Observability"] --> D4B["BUILD LOCATION<br/>day4/lab/<br/>Not implemented yet"] --> D4O["OUTPUT<br/>Evaluation scorecard<br/>Observability design"]
+        D4T["LEARN<br/>Failure resilience<br/>Production readiness<br/>GenAI security<br/>Governance + SLOs"] --> D4B["BUILD<br/>day4/lab/<br/>Controls + real-graph tests<br/>Optional guarded live agents"] --> D4O["OUTPUT<br/>IN07/08/09 score files<br/>Assessment + review notes"]
     end
     subgraph DAY5["DAY 5 | PLANNED"]
         direction TB
@@ -64,11 +64,13 @@ flowchart LR
     class D1T,D2T,D3T complete
     class D1B,D2B,D3B build
     class D1O,D2O,D3O,D4O,D5O deliverable
-    class D4T,D4B,D5T,D5B planned
+    class D4T complete
+    class D4B build
+    class D5T,D5B planned
     style DAY1 fill:#0f172a,stroke:#38bdf8,stroke-width:3px,color:#f8fafc
     style DAY2 fill:#0f172a,stroke:#38bdf8,stroke-width:3px,color:#f8fafc
     style DAY3 fill:#0f172a,stroke:#38bdf8,stroke-width:3px,color:#f8fafc
-    style DAY4 fill:#111827,stroke:#64748b,stroke-width:3px,color:#f8fafc
+    style DAY4 fill:#0f172a,stroke:#34d399,stroke-width:3px,color:#f8fafc
     style DAY5 fill:#111827,stroke:#64748b,stroke-width:3px,color:#f8fafc
 ```
 
@@ -96,7 +98,8 @@ day3/topics/                 REST/MCP, agents, orchestration concepts
 day3/lab/                    Tools, agents, MCP server, orchestration
  day3/retail_multi_agent/     Product, inventory, order, policy specialists
 
-day4/                         Planned evaluation and observability
+day4/topics/                  Failure resilience, security, governance, SLOs
+day4/lab/                     Offline IN06–IN09 modules, live adapter, tests, and deliverables
 day5/                         Planned production readiness
 activate                      Virtualenv activation and aliases
 requirements.txt              Python dependencies
@@ -164,6 +167,12 @@ singlemulti
 assistant
 compare
 retail_multi_agent
+
+# Day 4 - resilience, security, and production readiness
+python -m day4.lab
+python -m unittest discover -s day4/lab/tests -v
+python -m day4.lab --live  # optional; calls OpenAI using the root .env key
+python -m day4.lab --multi-agent-live --mode supervisor --question "What is the price of milk, is it in stock, and what is the return policy?"
 ```
 
 Focused Day 3 examples:
@@ -251,7 +260,7 @@ override applies to high-complexity tasks with tight latency or cost constraints
 | [Day 1](day1/README.md) | Complete | LLM mechanics, prompts, embeddings | Foundation reflection and evidence |
 | [Day 2](day2/README.md) | Complete | RAG, architecture scoring, APIs | Architecture comparison |
 | [Day 3](day3/README.md) | Complete | REST/MCP, agents, orchestration | Agent and orchestration comparison |
-| Day 4 | Planned | Evaluation and observability | Evaluation scorecard |
+| [Day 4](day4/README.md) | Runnable practice | Failure resilience, production readiness, GenAI security, governance, scaling, and SLOs | Offline tests, control scores, deployment review package |
 | Day 5 | Planned | Production readiness and architecture review | Production checklist and ARB package |
 
 See each day's `topics/` for concepts and `lab/deliverable/` for reviewable
@@ -282,8 +291,9 @@ git remote set-url origin git@github.com:rakeshmatha/advanced-agentic-ai.git
 The complete learning path should produce an assistant that can answer supported
 policy questions with evidence, refuse or escalate unsupported questions, choose
 an architecture using explicit trade-offs, use external tools, compare
-orchestration patterns with quality/latency/cost evidence, pass a golden test
-set, report operational metrics, and explain its production controls.
+orchestration patterns with quality/latency/cost evidence, withstand tested
+dependency failures, apply layered security controls, report operational SLOs,
+and justify a deployment decision with evidence and known limitations.
 
 ## License and course context
 

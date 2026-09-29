@@ -1,0 +1,92 @@
+{
+  "assessment_scope": "offline training simulation; not production certification",
+  "in06": {
+    "bounded_retry_backoff": true,
+    "circuit_breaker_open_half_open_recovery": true,
+    "timeout_returns_before_slow_call": true,
+    "trusted_sku_validation": true,
+    "invalid_sku_rejected": true,
+    "inventory_fallback": true
+  },
+  "in07": {
+    "baseline_score": 0,
+    "baseline_max_score": 12,
+    "baseline_note": "Intentionally flawed training starter; score from its documented missing controls.",
+    "fixed_score": 12,
+    "failures": [],
+    "checklist": {
+      "input_validation": true,
+      "injection_detection": true,
+      "no_architecture_leak": true,
+      "low_temperature": true,
+      "output_guardrail": true,
+      "hallucination_check": true,
+      "audit_log": true,
+      "graceful_fallback": true,
+      "sla_timeout": true,
+      "content_moderation": true,
+      "pii_masking": true,
+      "rate_limiting": true
+    },
+    "evidence_scope": "automated local behavior checks with synthetic inputs"
+  },
+  "in08": {
+    "injection_detection": true,
+    "jailbreak_resistance": true,
+    "pii_masking_input": true,
+    "pii_masking_output": true,
+    "pii_safe_logging": true,
+    "exfiltration_controls": true,
+    "content_moderation": true,
+    "anchored_system_prompt": true,
+    "indirect_injection_clean": true
+  },
+  "in09": {
+    "data_lineage_tracking": true,
+    "prompt_versioning": true,
+    "structured_audit_trail": true,
+    "model_routing": true,
+    "streaming_enabled": true,
+    "slo_measurement": true,
+    "fallback_chain": true,
+    "rate_limiting": true,
+    "graceful_degradation": true
+  },
+  "synthetic_slo": {
+    "total_calls": 5,
+    "p50_latency_ms": 400.0,
+    "p95_latency_ms": 2500.0,
+    "p99_latency_ms": 2500.0,
+    "availability_pct": 80.0,
+    "block_rate_pct": 20.0,
+    "percentile_method": "nearest-rank",
+    "measurement_scope": "synthetic training data unless sourced otherwise",
+    "slo_violations": {
+      "p50_latency_ms": {
+        "target": 800.0,
+        "measured": 400.0,
+        "status": "OK"
+      },
+      "p95_latency_ms": {
+        "target": 2000.0,
+        "measured": 2500.0,
+        "status": "BREACH"
+      },
+      "p99_latency_ms": {
+        "target": 4000.0,
+        "measured": 2500.0,
+        "status": "OK"
+      },
+      "availability_pct": {
+        "target": 99.9,
+        "measured": 80.0,
+        "status": "BREACH"
+      },
+      "block_rate_pct": {
+        "target": 1.0,
+        "measured": 20.0,
+        "status": "BREACH"
+      }
+    }
+  }
+}

@@ -150,7 +150,15 @@ See [`lab/deliverable/architecture-comparison.md`](lab/deliverable/architecture-
 for the REST-vs-MCP comparison, single-vs-multi-agent notes, and the orchestration
 decision matrix.
 
-## Where this leads
+## Day 4 integration
 
-Days 4-5 (not yet taught) move toward evaluation/observability and production
-readiness / architecture review.
+Day 4 wraps the four-domain router and supervisor with resilience, security,
+request validation, scoped tool authorization, output checks, lineage, and SLO
+measurement. The guarded integration and offline graph tests are in
+[day4/lab/multi_agent.py](../day4/lab/multi_agent.py) and
+[day4/lab/tests/test_multi_agent.py](../day4/lab/tests/test_multi_agent.py).
+Run `python -m day4.lab` for offline tests; use the documented
+`--multi-agent-live` option to exercise real model calls with synthetic
+questions. These controls are training examples, not production certification.
+
+Day 5 continues toward architecture review and capstone integration.

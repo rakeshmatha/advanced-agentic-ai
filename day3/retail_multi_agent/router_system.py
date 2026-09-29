@@ -38,14 +38,16 @@ def classify(state: RouterState) -> RouterState:
         [SystemMessage(content=CLASSIFIER_PROMPT), HumanMessage(content=state["question"])]
     )
     word = str(response.content).strip().upper()
-    if "INVENTORY" in word:
-        route: Route = "inventory"
-    elif "ORDER" in word:
-        route = "orders"
-    elif "POLICY" in word:
-        route = "policy"
-    else:
-        route = "product"
+    route_by_label: dict[str, Route] = {
+        "PRODUCT": "product",
+        "INVENTORY": "inventory",
+        "ORDERS": "orders",
+        "ORDER": "orders",
+        "POLICY": "policy",
+    }
+    route = route_by_label.get(word)
+    if route is None:
+        raise ValueError(f"classifier returned an unsupported domain label: {word!r}")
     return {"route": route}
 
 
