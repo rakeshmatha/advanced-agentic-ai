@@ -366,10 +366,10 @@ class Day4MultiAgentHarness:
         from langchain_openai import ChatOpenAI
 
         return ChatOpenAI(
-            api_key=settings.openai_api_key.get_secret_value(),
+            api_key=settings.openai_api_key.get_secret_value(), # pyright: ignore[reportArgumentType]
             model=settings.model,
             temperature=0,
-            max_tokens=max_tokens,
+            max_completion_tokens=max_tokens,
             timeout=min(self.request_timeout_seconds, 35.0),
             max_retries=0,
         )
@@ -471,7 +471,7 @@ class Day4MultiAgentHarness:
                 for module in (router_system, supervisor_system, agents):
                     previous_factory = module.build_llm
                     stack.callback(setattr, module, "build_llm", previous_factory)
-                    module.build_llm = factory
+                    setattr(module, "build_llm", factory)
 
                 def guard_finding(text: str) -> str:
                     safe_text = mask_pii(text)
